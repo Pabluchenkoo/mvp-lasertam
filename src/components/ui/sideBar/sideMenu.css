@@ -1,0 +1,9 @@
+/* Targeting the collapse trigger within dark sider */
+.ant-layout-sider-dark.ant-layout-sider-has-trigger .ant-layout-sider-trigger {
+    background-color: #844685; /* Example: setting a green background */
+}
+
+/* If you are using a light theme or want to make sure it applies regardless of the theme */
+.ant-layout-sider-has-trigger .ant-layout-sider-trigger {
+    background-color: #844685; /* Adjust the color as needed */
+}
