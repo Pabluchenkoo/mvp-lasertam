@@ -1,6 +1,6 @@
 
 .carousel{
-    max-width: available;
+    max-width: inherit;
     color: white;
 }
 
@@ -16,7 +16,7 @@
 }
 
 img{
-    max-width: available;
+    max-width: inherit;
     height: 600px;
 }
 
