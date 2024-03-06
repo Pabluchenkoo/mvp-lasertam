@@ -1,0 +1,11 @@
+.link {
+    text-decoration: none; /* Removes the underline */
+    color: black; /* Optional: ensures the link color matches the surrounding text or specified color */
+}
+.link:hover{
+    color: #844685;
+}
+
+.barra{
+    color: #FFFFFF;
+}
