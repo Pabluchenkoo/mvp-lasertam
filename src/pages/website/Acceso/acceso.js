@@ -16,11 +16,10 @@ const Acceso = (props) => {
             console.log(data);
         } else {
             console.log(data);
-            // Validar que el correo y el password sean correctos y que existan en la base de datos (MOCK_DATA.json)
             existe = await validarLogin(data.email, data.password);
             console.log(existe);
             if (existe) {
-                navigate('/app'); // Redirigir a la ruta '/app' si existe es verdadero
+                navigate('/app'); 
             }
         }
     }
