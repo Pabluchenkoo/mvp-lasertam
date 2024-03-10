@@ -22,6 +22,7 @@ function ContainerExample() {
             'Chocó',
             'Córdoba',
             'Cundinamarca',
+            'Bogota D.C.',
             'Guainía',
             'Guaviare',
             'Huila',
@@ -42,6 +43,21 @@ function ContainerExample() {
             'Vichada'
         ];
     };
+    const getTiposPago = () => {
+        return [
+            'Efectivo',
+            'Tarjeta de Crédito',
+            'Tarjeta de Débito',
+            'Transferencia Bancaria',
+            'PayPal',
+            'Mercado Pago',
+            'Nequi',
+            'Daviplata',
+            'Crypto Monedas',
+            'Cheque',
+            'Consignación Bancaria',
+        ];
+        };
     return (
     
     <Container>
@@ -50,13 +66,13 @@ function ContainerExample() {
       <Row>
               <Col>
                   <div>
-                        <Card style={{ width: 600 }}>
+                        <Card style={{ width: 600, height:450}}>
                             <p1>Nombre</p1>
-                            <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
+                            <FloatingLabel controlId="floatingInput" label="Nombres" className="mb-3">
                                 <Form.Control type="email" placeholder="" />
                             </FloatingLabel>
                             <p1>Apellido</p1>
-                            <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
+                            <FloatingLabel controlId="floatingInput" label="Apellidos" className="mb-3">
                                 <Form.Control type="email" placeholder="" />
                             </FloatingLabel>
                             <p1>Correo</p1>
@@ -64,7 +80,7 @@ function ContainerExample() {
                                 <Form.Control type="email" placeholder="" />
                             </FloatingLabel>
                             <p1>Telefono</p1>
-                            <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
+                            <FloatingLabel controlId="floatingInput" label="Telefono celular" className="mb-3">
                                 <Form.Control type="email" placeholder="" />
                             </FloatingLabel>    
                         </Card>
@@ -72,11 +88,22 @@ function ContainerExample() {
             </Col>
                 <Col>
                     <div>
-                        <Card style={{ width: 600 }}>  
+                        
+                        <Card style={{ width: 600, height:450 }}>
+                            <Form.Label>Tipo de pago</Form.Label>
+                            <Form.Select aria-label="Tipos de Pago">
+                            {getTiposPago().map((tipoPago) => (
+                                <option key={tipoPago} value={tipoPago}>
+                                {tipoPago}
+                                </option>
+                            ))}
+                            </Form.Select>
+                        <br/>
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Enviar algo</Form.Label>
                             <Form.Control type="file" />
                             </Form.Group>
+                        <br/>
                         <p1>Departamento</p1>
                         <Form.Select aria-label="Departamentos de Colombia">
                             {getDepartmentosColombia().map((departamento) => (
@@ -84,11 +111,22 @@ function ContainerExample() {
                                 {departamento}
                                 </option>
                             ))}
-                        </Form.Select>
+                            </Form.Select>
+                        <br/>    
+                        <p1>Comentarios</p1>
+                        <FloatingLabel controlId="floatingTextarea2" label="Comments">
+                            <Form.Control
+                            as="textarea"
+                            placeholder="Leave a comment here"
+                            style={{ height: '100px' }}
+                            />
+                        </FloatingLabel>
                         </Card>
                     </div>
             </Col>
-      </Row>
+            </Row>
+            <br/>
+    <button type="submit" class="btn btn-primary" style={{width:200,height:50}}>Enviar</button>
     </Container>
     
   );
