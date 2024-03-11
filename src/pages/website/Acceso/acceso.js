@@ -41,6 +41,7 @@ const Acceso = (props) => {
             <>
                 <div style={formStyle}>
                     <h1>Sign Up</h1>
+                    <br/>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
                             <Form.Control type="email" placeholder="email" {...register('email', { required: true, validate: validarCorreo })} />
@@ -58,6 +59,7 @@ const Acceso = (props) => {
                         <FloatingLabel controlId="LastName" label="Last Name">
                             <Form.Control type="text" placeholder="Last Name"  {...register('last_name')}/>
                         </FloatingLabel>
+                        <br/>
                         <Button type="submit">Sign Up</Button>
 
 
@@ -72,6 +74,7 @@ const Acceso = (props) => {
             <>
                 <div style={formStyle}>
                     <h1>Login</h1>
+                    <br/>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
                             <Form.Control type="email" placeholder="email" {...register('email', { required: true })} />
@@ -80,7 +83,7 @@ const Acceso = (props) => {
                         <FloatingLabel controlId="floatingPassword" label="Password" className="mb-3">
                             <Form.Control type={showPassword ? "text" : "password"} placeholder="Password" {...register('password', { required: true })} />
                         </FloatingLabel>
-                        <Button onClick={togglePasswordVisibility}>Show/Hide Password</Button>
+                        <Button onClick={togglePasswordVisibility} style={{ marginRight:15}}>Show/Hide Password</Button>
                         <Button type="submit">Login</Button>
                     </form>
                 </div>
