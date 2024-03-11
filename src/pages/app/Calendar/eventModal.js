@@ -33,7 +33,7 @@ const EventModal = ({ isOpen, onClose, onSave, event, clickPosition }) => {
     if (!isOpen) return null;
 
     const modalStyle = {
-        position: 'fixed', 
+        position: 'fixed',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
