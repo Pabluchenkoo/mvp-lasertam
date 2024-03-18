@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom";
-import Administracion from '../administracion/administracion';
+import Negocios from '../negocios/negocios';
 
 
 function Contenido(){
@@ -8,7 +8,7 @@ function Contenido(){
         <Routes>
             <Route path="dashboard" element={<div>Dashboard</div>} />
             <Route path="minegocio" element={<div>Mi negocio</div>} />
-            <Route path="administracion" element={<Administracion />} />
+            <Route path="administracion" element={<Negocios />} />
             <Route path="calendario" element={<div>Calendario</div>} />
             <Route path="mail" element={<div>Mail</div>} />
             <Route path="conversaciones" element={<div>Conversaciones</div>} />

@@ -12,29 +12,27 @@ function Empleados() {
   const [empleados, setEmpleados] = useState([]);
   const [showDelete, setshowDelete] = useState(false);
   const [showEdit, setshowEdit] = useState(false);
-  const [empleadoId, setEmpleadoId] = useState(null);
+  const [selectedEmpleado, setselectedEmpleado] = useState({nombre: "", apellido: "", email: "", foto: ""});
   const [editEmployeeNombre, setEditEmployeeNombre] = useState("");
   const [editEmployeeApellido, setEditEmployeeApellido] = useState("");
   const [editEmployeeEmail, setEditEmployeeEmail] = useState("");
   const [editEmployeeFoto, setEditEmployeeFoto] = useState("");
   const handleCloseEdit = () => setshowEdit(false);
   const handleEditEmployee = () => {
-    // Verifica si el empleado ya existe en la lista
     const existingEmployee = empleados.find(
-      (employee) => employee.id === empleadoId
+      (employee) => employee.id === selectedEmpleado.id
     );
 
     if (existingEmployee) {
-      // Si el empleado ya existe, actualiza sus valores
       const newEmployees = empleados.map((employee) => {
-        if (employee.id === empleadoId) {
+        if (employee.id === selectedEmpleado.id) {
           return {
             ...employee,
             nombre: editEmployeeNombre,
             apellido: editEmployeeApellido,
             email: editEmployeeEmail,
             foto: editEmployeeFoto,
-          }; // Actualiza el empleado con los nuevos valores
+          }; 
         }
         return employee;
       });
@@ -43,7 +41,7 @@ function Empleados() {
       setEmpleados([
         ...empleados,
         {
-          id: empleadoId,
+          id: selectedEmpleado.id,
           nombre: editEmployeeNombre,
           apellido: editEmployeeApellido,
           email: editEmployeeEmail,
@@ -54,18 +52,23 @@ function Empleados() {
 
     handleCloseEdit();
   };
-  const handleShowEdit = (id) => {
+  const handleShowEdit = (empleado) => {
+    setselectedEmpleado(empleado);
+    setEditEmployeeNombre(empleado.nombre);
+    setEditEmployeeApellido(empleado.apellido);
+    setEditEmployeeEmail(empleado.email);
+    setEditEmployeeFoto(empleado.foto);
     setshowEdit(true);
-    setEmpleadoId(id);
   };
   const handleClose = () => setshowDelete(false);
-  const handleShow = (id) => {
+  const handleShow = (empleado) => {
     setshowDelete(true);
-    setEmpleadoId(id);
+    setselectedEmpleado(empleado);
   };
-  const borrarEmpleado = () => {
+  const borrarEmpleado = (empleado) => {
+    setselectedEmpleado(empleado);
     const newServices = empleados.filter(
-      (empleado) => empleado.id !== empleadoId
+      (empleado) => empleado.id !== selectedEmpleado.id
     );
     setEmpleados(newServices);
     handleClose();
@@ -73,7 +76,7 @@ function Empleados() {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/empleados.json?token=GHSAT0AAAAAACOPJUOFSCUXGSTQZU4P7BOWZPYV2QQ"
+      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/empleados.json?token=GHSAT0AAAAAACOPJUOFQLN5BXMIHMKGEK5CZPYXTFA"
     )
       .then((response) => response.json())
       .then((data) => setEmpleados(data))
@@ -143,7 +146,7 @@ function Empleados() {
                         <Image
                           src="https://cdn-icons-png.flaticon.com/512/1077/1077687.png"
                           alt="Lapiz"
-                          onClick={() => handleShowEdit(empleado.id)}
+                          onClick={() => handleShowEdit(empleado)}
                           style={{ cursor: "pointer", height: "30px" }}
                         />
                       </Col>
@@ -151,7 +154,7 @@ function Empleados() {
                         <Image
                           src="https://cdn-icons-png.flaticon.com/512/1017/1017530.png"
                           alt="Basura"
-                          onClick={() => handleShow(empleado.id)}
+                          onClick={() => handleShow(empleado)}
                           style={{ cursor: "pointer", height: "30px" }}
                         />
                       </Col>
@@ -191,6 +194,7 @@ function Empleados() {
                   type="text"
                   value={editEmployeeNombre}
                   onChange={(e) => setEditEmployeeNombre(e.target.value)}
+                  placeholder={selectedEmpleado.nombre}
                 />
               </Form.Group>
 
@@ -199,7 +203,8 @@ function Empleados() {
                 <Form.Control
                   type="text"
                   value={editEmployeeApellido}
-                  onChange={(e) => setEditEmployeeApellido(e.target.value)}
+                  onChange={(e) => setEditEmployeeApellido(e.target.value)} 
+                    placeholder={selectedEmpleado.apellido}
                 />
               </Form.Group>
 
@@ -209,6 +214,7 @@ function Empleados() {
                   type="email"
                   value={editEmployeeEmail}
                   onChange={(e) => setEditEmployeeEmail(e.target.value)}
+                    placeholder={selectedEmpleado.email}
                 />
               </Form.Group>
 
@@ -218,6 +224,7 @@ function Empleados() {
                   type="text"
                   value={editEmployeeFoto}
                   onChange={(e) => setEditEmployeeFoto(e.target.value)}
+                    placeholder={selectedEmpleado.foto}
                 />
               </Form.Group>
             </Form>
