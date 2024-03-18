@@ -5,13 +5,24 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter} from 'react-router-dom';
+import { IntlProvider } from 'react-intl';
+import messages_es from './localizacion/es.json';
+import messages_en from './localizacion/en.json';
+
+const language = navigator.language.split(/[-_]/)[0]; 
+const messages = {
+  es: messages_es,
+  en: messages_en,
+}; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <IntlProvider locale={language} messages={messages[language]}>
       <BrowserRouter>
       <App />
         </BrowserRouter>
+    </IntlProvider>
   </React.StrictMode>
 );
 
