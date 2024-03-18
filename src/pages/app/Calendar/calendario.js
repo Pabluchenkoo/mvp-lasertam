@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import EventModal from "./eventModal"; // Make sure the import is correct based on your file structure
+import EventModal from "./modal/eventModal"; // Make sure the import is correct based on your file structure
 
 const localizer = momentLocalizer(moment);
 
@@ -17,10 +17,13 @@ const Calendario = () => {
             start: moment().toDate(),
             end: moment().add(1, 'hours').toDate(),
             title: 'Sample Event',
+            professional: 'Juan Perez',
+            comentarios: 'Comentario de prueba'
         },
     ]);
+    // console.log(events);
 
-    const handleSelectSlot = ({ start, end, action }) => {
+    const handleSelectSlot = ({ start, end }) => {
         setCurrentEvent({ start, end, title: '' });
         setIsModalOpen(true);
         setModalMode('add');
@@ -52,6 +55,8 @@ const Calendario = () => {
     return (
         <>
             <div>
+                <br/>
+
                 <Calendar
                     selectable
                     onSelectSlot={handleSelectSlot}

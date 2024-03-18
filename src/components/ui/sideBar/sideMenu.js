@@ -49,19 +49,7 @@ function SideMenu(){
               defaultSelectedKeys={[window.location.pathname]}
               mode="inline"
               items={titulos}
-              //hover a certain color
-              onHover={({key}) => {
-                    if(key !== "9") {
-                        document.getElementById(key).style.backgroundColor = '#DFDBD8';
-                        document.getElementById(key).style.color = '#DFDBD8';
-                    }
-              }}
-              // onSelect={({key}) => {
-              //       if(key !== "9") {
-              //           document.getElementById(key).style.backgroundColor = '#DFDBD8';
-              //           document.getElementById(key).style.color = '#DFDBD8';
-              //       }}
-              // }
+
                 />
 
     </Sider>)
