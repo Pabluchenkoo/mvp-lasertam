@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Form } from 'react-bootstrap';
-import Comentario from "../../components/ui/comentario/comentario";
+import Comentario from "../../../components/ui/comentario/comentario";
 
 function PQRsPage() {
   const [comments, setComments] = useState([]);

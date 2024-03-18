@@ -1,6 +1,7 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import PQRsPage from "../PQRsPage";
+import PQRsPage from "../PQRs/PQRsPage";
+import MiNegocioPage from '../miNegocio/MiNegocioPage';
 
 
 function Contenido() {
@@ -8,7 +9,7 @@ function Contenido() {
       <div>
         <Routes>
           <Route path="dashboard" element={<div>Dashboard</div>} />
-          <Route path="minegocio" element={<div>Mi negocio</div>} />
+          <Route path="minegocio" element={<MiNegocioPage/>} />
           <Route path="administracion" element={<div>Administración</div>} />
           <Route path="calendario" element={<div>Calendario</div>} />
           <Route path="mail" element={<div>Mail</div>} />
