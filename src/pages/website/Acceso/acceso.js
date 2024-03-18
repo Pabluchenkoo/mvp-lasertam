@@ -1,95 +1,124 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-import { validarCorreo } from "./validadorCorreo";
-import { validarLogin } from "./validarLogin";
 import "./acceso.css";
-import {Button} from "react-bootstrap";
+import { Button, Card, Col } from "react-bootstrap"; // Agregamos Col de react-bootstrap para una mejor distribución
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
-var existe = false;
-const Acceso = (props) => {
-    const navigate = useNavigate();
-    const { register, handleSubmit,formState:{errors}, setValue } = useForm({ defaultValues: { email: "pepito@gmail.com", password:"1234" , first_name:"Pepito", last_name:"Perez" } });
-    const onSubmit = async (data) => {
-        if (props.type === "signup") {
-            console.log(data);
-        } else {
-            console.log(data);
-            existe = await validarLogin(data.email, data.password);
-            console.log(existe);
-            if (existe) {
-                navigate('/app'); 
-            }
-        }
-    }
+import RegistroForm from "./RegistroForm";
+import { saveAs } from 'file-saver';
 
-    const formStyle = {
-        width: '300px', // Set the width of the form if needed
-        margin: 'auto', // Center the form horizontally
-        textAlign: 'center' // Center the form content
+const Acceso = (props) => {
+    const [selectedRole, setSelectedRole] = useState("");
+    const [registroExitoso, setRegistroExitoso] = useState(false);
+    const [existeUsuario, setExisteUsuario] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const guardarUsuario = async (data) => {
+        try {
+            let usuarios = JSON.parse(localStorage.getItem('Usuarios')) || [];
+            
+            const nuevoUsuario = { ...data };
+            if (selectedRole === "usuario") {
+                nuevoUsuario.company = null;
+                nuevoUsuario.cedula = null;
+            }
+
+            usuarios.push(nuevoUsuario);
+
+            localStorage.setItem('Usuarios', JSON.stringify(usuarios));
+
+            setRegistroExitoso(true);
+        } catch (error) {
+            console.error('Error al guardar el usuario:', error);
+        }
     };
-    const togglePasswordVisibility = () => {
+
+    const validarCorreo = async (correo) => {
+        const url = 'https://juanse2003.github.io/APIusuarios.github.io/MOCK_DATA.json';
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.some((usuario) => usuario.email === correo);
+    };
+
+    const validarLogin = async (correo, password) => {
+        const url = 'https://juanse2003.github.io/APIusuarios.github.io/MOCK_DATA.json';
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.some((usuario) => usuario.email === correo && usuario.password === password);
+    };
+
+    const handleRoleSelect = (role) => {
+        setSelectedRole(role);
+    };
+
+    const handleFormSubmit = async (data) => {
+        if (props.type === "signup") {
+            setRegistroExitoso(true);
+            await guardarUsuario(data);
+            navigate('/app');
+        } else {
+            const existe = await validarLogin(data.email, data.password);
+            if (existe) {
+                navigate('/app');
+            }
+            setExisteUsuario(existe);
+        }
+    };
+
+    const toggleShowPassword = () => {
         setShowPassword(!showPassword);
     };
-    const [showPassword, setShowPassword] = React.useState(false);
 
-    // Hacer que si la variable "existe" es true  entonces redirrecione al usuario a /app
-
-    if (props.type === "signup") {
-        return (
-            <>
-                <div style={formStyle}>
-                    <h1>Sign Up</h1>
-                    <br/>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
-                            <Form.Control type="email" placeholder="email" {...register('email', { required: true, validate: validarCorreo })} />
-                            {errors.email && errors.email.type === "required" && <p>Este campo es requerido</p>}
-                            {errors.email && errors.email.type === "validate" && <p>Este correo ya existe</p>}
+    return (
+        <>
+            <div style={{ width: '300px', margin: 'auto', textAlign: 'center' }}>
+                <h1>{props.type === "signup" ? "Sign Up" : "Login"}</h1>
+                <br />
+                {props.type === "signup" && (
+                    <>
+                        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+                            <Card style={{ width: '10rem', marginRight: '10px' }} onClick={() => handleRoleSelect("administrador")}>
+                                <Card.Img variant="top" src="imagen_administrador.jpg" />
+                                <Card.Body>
+                                    <Card.Title>Administrador</Card.Title>
+                                </Card.Body>
+                            </Card>
+                            <Card style={{ width: '10rem' }} onClick={() => handleRoleSelect("usuario")}>
+                                <Card.Img variant="top" src="imagen_usuario.jpg" />
+                                <Card.Body>
+                                    <Card.Title>Usuario</Card.Title>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                        <RegistroForm role={selectedRole} onSubmit={handleFormSubmit} />
+                    </>
+                )}
+                {props.type !== "signup" && (
+                    <Form onSubmit={handleSubmit(handleFormSubmit)} className="mb-3"> {/* Agregamos una clase para un mejor espaciado */}
+                        <FloatingLabel controlId="floatingInput" label="Email address">
+                            <Form.Control type="email" placeholder="Email" {...register('email', { required: true })} />
+                            {errors.email && <p>This field is required</p>}
                         </FloatingLabel>
-            
-
-                        <FloatingLabel controlId="floatingPassword" label="Password" className="mb-3">
-                            <Form.Control type="password" placeholder="Password" {...register('password',{required:true})}/>
+                        <FloatingLabel controlId="floatingPassword" label="Password" className="mt-3">
+                            <Form.Control 
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Password" 
+                                {...register('password', { required: true })}
+                            />
+                            {errors.password && <p>This field is required</p>}
                         </FloatingLabel>
-                        <FloatingLabel controlId="FirstName" label="First Name" className="mb-3">
-                            <Form.Control type="text" placeholder="First Name"  {...register('first_name')}/>
-                        </FloatingLabel>
-                        <FloatingLabel controlId="LastName" label="Last Name">
-                            <Form.Control type="text" placeholder="Last Name"  {...register('last_name')}/>
-                        </FloatingLabel>
-                        <br/>
-                        <Button type="submit">Sign Up</Button>
-
-
-
-                    </form>
-                </div>
-            </>
-        );
-    } else {
-        // Hacer que si la variable "existe" es true  entonces redirrecione al usuario a /app
-        return (
-            <>
-                <div style={formStyle}>
-                    <h1>Login</h1>
-                    <br/>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
-                            <Form.Control type="email" placeholder="email" {...register('email', { required: true })} />
-                            {errors.email && errors.email.type === "required" && <p>Este campo es requerido</p>}
-                        </FloatingLabel>
-                        <FloatingLabel controlId="floatingPassword" label="Password" className="mb-3">
-                            <Form.Control type={showPassword ? "text" : "password"} placeholder="Password" {...register('password', { required: true })} />
-                        </FloatingLabel>
-                        <Button onClick={togglePasswordVisibility} style={{ marginRight:15}}>Show/Hide Password</Button>
-                        <Button type="submit">Login</Button>
-                    </form>
-                </div>
-            </>
-        );
-    }
+                        <Button onClick={toggleShowPassword} variant="secondary" className="mt-3 me-2"> {/* Ajustamos las clases de Bootstrap para un mejor aspecto */}
+                            {showPassword ? "Hide" : "Show"} Password
+                        </Button>
+                        <Button type="submit" variant="primary" className="mt-3">Login</Button>
+                    </Form>
+                )}
+            </div>
+        </>
+    );
 };
 
 export default Acceso;
