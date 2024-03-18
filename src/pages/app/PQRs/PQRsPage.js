@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Row, Col, Form } from 'react-bootstrap';
+import { Button, Container, Row, Col, Form, Toast } from 'react-bootstrap';
 import Comentario from "../../../components/ui/comentario/comentario";
 
 function PQRsPage() {
@@ -13,6 +13,7 @@ function PQRsPage() {
     place: '',
     location: ''
   });
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     fetch('https://my.api.mockaroo.com/test_schema.json?key=16ada500')
@@ -40,6 +41,8 @@ function PQRsPage() {
       place: '',
       location: ''
     });
+    setShowNotification(true); 
+    setTimeout(() => setShowNotification(false), 5000);
   };
 
   const handleSearchInputChange = (event) => {
@@ -62,7 +65,7 @@ function PQRsPage() {
         <Col xs="6" className="text-right">
           <Button
             onClick={() => setShowForm(true)}
-            style={{ backgroundColor: '#ffcccc', border: 'none', cursor: 'pointer', fontSize: '0.8rem' }}
+            style={{ backgroundColor: '#ffcccc', border: 'none', cursor: 'pointer', fontSize: '0.8rem', color: 'black' }}
           >
             Crear
           </Button>
@@ -134,6 +137,12 @@ function PQRsPage() {
           </Form>
         </div>
       )}
+      <Toast show={showNotification} onClose={() => setShowNotification(false)} delay={5000} autohide>
+        <Toast.Header>
+          <strong className="mr-auto">¡Publicación creada!</strong>
+        </Toast.Header>
+        <Toast.Body>Tu comentario ha sido creado exitosamente.</Toast.Body>
+      </Toast>
       <div className="search-container" style={{ margin: '20px 0' }}>
         <Form.Control
           type="text"
