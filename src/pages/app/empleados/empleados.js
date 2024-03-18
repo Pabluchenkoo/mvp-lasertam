@@ -12,28 +12,69 @@ function Empleados() {
   const [empleados, setEmpleados] = useState([]);
   const [showDelete, setshowDelete] = useState(false);
   const [showEdit, setshowEdit] = useState(false);
-  const [empleadoId, setServiceId] = useState(null);
-  const [selectedService, setSelectedService] = useState("");
-  const [editServiceValue, setEditServiceValue] = useState(""); // Nuevo estado para el valor del campo de texto
-
+  const [empleadoId, setEmpleadoId] = useState(null);
+  const [editEmployeeNombre, setEditEmployeeNombre] = useState("");
+  const [editEmployeeApellido, setEditEmployeeApellido] = useState("");
+  const [editEmployeeEmail, setEditEmployeeEmail] = useState("");
+  const [editEmployeeFoto, setEditEmployeeFoto] = useState("");
   const handleCloseEdit = () => setshowEdit(false);
-  const handleShowEdit = (service) => {
+  const handleEditEmployee = () => {
+    // Verifica si el empleado ya existe en la lista
+    const existingEmployee = empleados.find(
+      (employee) => employee.id === empleadoId
+    );
+
+    if (existingEmployee) {
+      // Si el empleado ya existe, actualiza sus valores
+      const newEmployees = empleados.map((employee) => {
+        if (employee.id === empleadoId) {
+          return {
+            ...employee,
+            nombre: editEmployeeNombre,
+            apellido: editEmployeeApellido,
+            email: editEmployeeEmail,
+            foto: editEmployeeFoto,
+          }; // Actualiza el empleado con los nuevos valores
+        }
+        return employee;
+      });
+      setEmpleados(newEmployees);
+    } else {
+      setEmpleados([
+        ...empleados,
+        {
+          id: empleadoId,
+          nombre: editEmployeeNombre,
+          apellido: editEmployeeApellido,
+          email: editEmployeeEmail,
+          foto: editEmployeeFoto,
+        },
+      ]);
+    }
+
+    handleCloseEdit();
+  };
+  const handleShowEdit = (id) => {
     setshowEdit(true);
-    setSelectedService(service);
+    setEmpleadoId(id);
   };
   const handleClose = () => setshowDelete(false);
   const handleShow = (id) => {
     setshowDelete(true);
-    setServiceId(id);
+    setEmpleadoId(id);
   };
-  const borrarServicio = () => {
-    const newServices = empleados.filter((empleado) => empleado.id !== empleadoId);
+  const borrarEmpleado = () => {
+    const newServices = empleados.filter(
+      (empleado) => empleado.id !== empleadoId
+    );
     setEmpleados(newServices);
     handleClose();
   };
 
   useEffect(() => {
-    fetch("https://my.api.mockaroo.com/empleados.json?key=be2e9200")
+    fetch(
+      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/empleados.json?token=GHSAT0AAAAAACOPJUOFSCUXGSTQZU4P7BOWZPYV2QQ"
+    )
       .then((response) => response.json())
       .then((data) => setEmpleados(data))
       .catch((error) => console.error("Error fetching comments:", error));
@@ -43,6 +84,38 @@ function Empleados() {
       <Row>
         <Col style={{ height: "100vh" }}>
           <ul>
+            <li>
+              <Row
+                id="item"
+                className="justify-content-between"
+                style={{
+                  padding: "40px",
+                }}
+              >
+                <Col
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    textAlign: "left",
+                  }}
+                >
+                  Agregar nuevo empleado
+                </Col>
+                <Col xs={1}>
+                  <Image
+                    src="https://cdn.icon-icons.com/icons2/1993/PNG/512/add_circle_create_expand_new_plus_icon_123218.png"
+                    alt="Agregar"
+                    onClick={() =>
+                      handleShowEdit({
+                        id: empleados.length + 1,
+                        service: "Nuevo servicio",
+                      })
+                    }
+                    style={{ cursor: "pointer", height: "30px", width: "30px" }}
+                  />
+                </Col>
+              </Row>
+            </li>
             {empleados.map((empleado) => (
               <li key={empleado.id}>
                 <Row
@@ -59,7 +132,10 @@ function Empleados() {
                       textAlign: "left",
                     }}
                   >
-                    {empleado.nombre}
+                    <Row>
+                    <Col><img src={empleado.foto} alt="foto del empleado" style={{borderRadius:'50%', height: '30px', width:'30px'}}/></Col>
+                      <Col>{empleado.nombre}</Col>
+                    </Row>
                   </Col>
                   <Col style={{ height: "20px" }} xs={2}>
                     <Row>
@@ -67,7 +143,7 @@ function Empleados() {
                         <Image
                           src="https://cdn-icons-png.flaticon.com/512/1077/1077687.png"
                           alt="Lapiz"
-                          onClick={() => handleShowEdit(empleado)}
+                          onClick={() => handleShowEdit(empleado.id)}
                           style={{ cursor: "pointer", height: "30px" }}
                         />
                       </Col>
@@ -87,48 +163,75 @@ function Empleados() {
           </ul>
         </Col>
 
-      <Modal show={showDelete} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Eliminar Servicio</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>¿Está seguro que desea eliminar este servicio</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancelar
-          </Button>
-          <Button variant="secondary" onClick={borrarServicio}>
-            Aceptar
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        <Modal show={showDelete} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Eliminar Servicio</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            ¿Está seguro que desea eliminar a este empleado?
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Cancelar
+            </Button>
+            <Button variant="secondary" onClick={borrarEmpleado}>
+              Aceptar
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        <Modal show={showEdit} onHide={handleCloseEdit}>
+          <Modal.Header closeButton>
+            <Modal.Title>Editar Empleado</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group controlId="formBasicNombre">
+                <Form.Label>Nombre del Empleado:</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={editEmployeeNombre}
+                  onChange={(e) => setEditEmployeeNombre(e.target.value)}
+                />
+              </Form.Group>
 
-      <Modal show={showEdit} onHide={handleCloseEdit}>
-        <Modal.Header closeButton>
-          <Modal.Title>Editar Servicio</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Nombre del Servicio:</Form.Label>
-              <Form.Control
-                type="text"
-                value={editServiceValue}
-                onChange={(e) => setEditServiceValue(e.target.value)}
-                placeholder={selectedService.service}
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseEdit}>
-            Cancelar
-          </Button>
-          <Button variant="secondary" onClick={handleCloseEdit}>
-            Aceptar
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </Row>
+              <Form.Group controlId="formBasicApellido">
+                <Form.Label>Apellido del Empleado:</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={editEmployeeApellido}
+                  onChange={(e) => setEditEmployeeApellido(e.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email del Empleado:</Form.Label>
+                <Form.Control
+                  type="email"
+                  value={editEmployeeEmail}
+                  onChange={(e) => setEditEmployeeEmail(e.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formBasicFoto">
+                <Form.Label>Foto del Empleado:</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={editEmployeeFoto}
+                  onChange={(e) => setEditEmployeeFoto(e.target.value)}
+                />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseEdit}>
+              Cancelar
+            </Button>
+            <Button variant="primary" onClick={handleEditEmployee}>
+              Guardar Cambios
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </Row>
     </Container>
   );
 }
