@@ -1,53 +1,100 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Container, Row } from 'react-bootstrap';
-import Comentario from "../../components/ui/comentario/comentario";
-import CrearComentarioForm from '../../components/ui/comentario/CrearComentarioForm'; // Importamos el componente del formulario
+import React, { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
 
-function PQRsPage() {
-  const [comments, setComments] = useState([]);
-  const [showForm, setShowForm] = useState(false);
+const CrearComentarioForm = ({ onFormSubmit }) => {
+  const [newComment, setNewComment] = useState({
+    name: '',
+    comment: '',
+    rating: '',
+    place: '',
+    location: ''
+  });
 
-  useEffect(() => {
-    fetch('https://my.api.mockaroo.com/test_schema.json?key=16ada500')
-      .then(response => response.json())
-      .then(data => setComments(data))
-      .catch(error => console.error('Error fetching comments:', error));
-  }, []);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setNewComment({
+      ...newComment,
+      [name]: value
+    });
+  };
 
-  const handleCreateComment = (newComment) => {
-    setComments([...comments, newComment]); // Agregar el nuevo comentario al estado de los comentarios
-    setShowForm(false); // Ocultar el formulario después de crear el comentario
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onFormSubmit(newComment);
+    setNewComment({
+      name: '',
+      comment: '',
+      rating: '',
+      place: '',
+      location: ''
+    });
   };
 
   return (
-    <Container>
-      <Row className="justify-content-between">
-        <h1 style={{ textAlign: 'left' }}>PQRs</h1>
-        <Button
-          onClick={() => setShowForm(true)}
-          style={{ backgroundColor: '#e6ccff', border: 'none', cursor: 'pointer' }}
-        >
-          Crear
-        </Button>
-      </Row>
-      {showForm && (
-        <CrearComentarioForm onCreateComment={handleCreateComment} /> // Mostrar el formulario si showForm es verdadero
-      )}
-      <div className="comments-container">
-        {comments.map((comment, index) => (
-          <Comentario
-            key={index}
-            rating={Math.floor(Math.random() * 5) + 1}
-            name={comment.name}
-            comment={comment.comment}
-            place={comment.place}
-            location={comment.location}
-            userPhoto="../../../assets/hombre.jpeg"
+    <div className="form-container" style={{ backgroundColor: '#ffcccc', padding: '20px', borderRadius: '10px', marginTop: '20px' }}>
+      <h2 style={{ textAlign: 'left' }}>Crear nuevo comentario</h2>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="name">
+          <Form.Label>Nombre:</Form.Label>
+          <Form.Control
+            type="text"
+            name="name"
+            placeholder="Ingrese su nombre"
+            value={newComment.name}
+            onChange={handleInputChange}
+            required
           />
-        ))}
-      </div>
-    </Container>
+        </Form.Group>
+        <Form.Group controlId="comment">
+          <Form.Label>Comentario:</Form.Label>
+          <Form.Control
+            as="textarea"
+            name="comment"
+            placeholder="Ingrese su comentario"
+            value={newComment.comment}
+            onChange={handleInputChange}
+            required
+          />
+        </Form.Group>
+        <Form.Group controlId="place">
+          <Form.Label>Negocio:</Form.Label>
+          <Form.Control
+            type="text"
+            name="place"
+            placeholder="Ingrese el negocio"
+            value={newComment.place}
+            onChange={handleInputChange}
+            required
+          />
+        </Form.Group>
+        <Form.Group controlId="location">
+          <Form.Label>Ubicacion:</Form.Label>
+          <Form.Control
+            type="text"
+            name="location"
+            placeholder="Ingrese la ubicacion"
+            value={newComment.location}
+            onChange={handleInputChange}
+            required
+          />
+        </Form.Group>
+        <Form.Group controlId="rating">
+          <Form.Label>Rating (0-5):</Form.Label>
+          <Form.Control
+            type="number"
+            name="rating"
+            min="0"
+            max="5"
+            placeholder="Ingrese el rating"
+            value={newComment.rating}
+            onChange={handleInputChange}
+            required
+          />
+        </Form.Group>
+        <Button type="submit">Enviar</Button>
+      </Form>
+    </div>
   );
-}
+};
 
-export default PQRsPage;
+export default CrearComentarioForm;

@@ -7,7 +7,6 @@ const Comentario = ({ rating, name, comment, place, location, userPhoto }) => {
         <div className="rating-circle">
           {rating}
           <svg viewBox="0 0 36 36" className="circle-progress">
-            {/* Código SVG para el círculo de progreso */}
           </svg>
         </div>
         <div className="comment-details">
