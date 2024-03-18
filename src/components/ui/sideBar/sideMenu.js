@@ -6,9 +6,9 @@ import {
     MessageOutlined,
     PieChartOutlined, QuestionOutlined, SettingOutlined
 } from "@ant-design/icons";
-import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {Layout, Menu} from "antd";
+import { Layout, Menu } from "antd";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './sideMenu.css';
 const { Sider } = Layout;
 
