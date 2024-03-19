@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, ProgressBar, Button, Form, Toast } from 'react-bootstrap';
 import Comentario from "../../../components/ui/comentario/comentario";
+import { FormattedMessage } from 'react-intl';
 
 function MiNegocioPage() {
   const [negocioInfo, setNegocioInfo] = useState({});
@@ -8,6 +9,7 @@ function MiNegocioPage() {
   const [averageRating, setAverageRating] = useState(0);
   const [showReplyForm, setShowReplyForm] = useState({});
   const [showNotification, setShowNotification] = useState(false);
+
 
   useEffect(() => {
     fetch('https://my.api.mockaroo.com/negocio.json?key=7379cdd0')
@@ -89,7 +91,7 @@ function MiNegocioPage() {
             <Card.Body>
               <Card.Title>{negocioInfo.business}</Card.Title>
               <Card.Text>{negocioInfo.description}</Card.Text>
-              <Card.Text>Ubicación: {negocioInfo.location}</Card.Text>
+              <Card.Text><FormattedMessage id="MiNegocio.location"/> : {negocioInfo.location}</Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -97,7 +99,7 @@ function MiNegocioPage() {
       
       <Row className="mb-4">
         <Col>
-          <h3>Comentarios del Negocio</h3>
+          <h3><FormattedMessage id="MiNegocio.comments"/></h3>
           <div className="comments-container">
             {Object.keys(comments).map((key) => (
               <div key={key}>
@@ -109,16 +111,16 @@ function MiNegocioPage() {
                   location={comments[key].location}
                   userPhoto="../../../assets/hombre.jpeg"
                 />
-                <Button variant="secondary" size="sm" onClick={() => handleReply(comments[key].id)}>Responder</Button>
+                <Button variant="secondary" size="sm" onClick={() => handleReply(comments[key].id)}><FormattedMessage id="MiNegocio.reply"/></Button>
                 {showReplyForm[comments[key].id] && (
                   <Form onSubmit={(event) => handleReplySubmit(event, comments[key].id)}>
                     <Form.Group controlId={`replyText-${comments[key].id}`}>
-                      <Form.Control type="text" placeholder="Escribe tu respuesta..." name="replyText" />
+                      <Form.Control type="text" placeholder={'MiNegocio.enterReply'} name="replyText" />
                     </Form.Group>
-                    <Button variant="light" type="submit">Enviar</Button>
+                    <Button variant="light" type="submit"><FormattedMessage id="MiNegocio.send"/> </Button>
                   </Form>
                 )}
-                {comments[key].reply && <p><strong>Tu respuesta:</strong> {comments[key].reply}</p>}
+                {comments[key].reply && <p><strong></strong><FormattedMessage id="MiNegocio.yourReply"/> : {comments[key].reply}</p>}
               </div>
             ))}
           </div>
@@ -127,14 +129,14 @@ function MiNegocioPage() {
       
       <Row className="mb-4">
         <Col>
-          <h3>Promedio de Ratings</h3>
+          <h3><FormattedMessage id="MiNegocio.averageRating"/> </h3>
           <h1>{averageRating.toFixed(1)}</h1>
           <ProgressBar now={averageRating * 20} />
         </Col>
       </Row>
 
       <Toast show={showNotification} onClose={() => setShowNotification(false)} delay={3000} autohide>
-        <Toast.Body>¡Has respondido al comentario!</Toast.Body>
+        <Toast.Body><FormattedMessage id="MiNegocio.notificacion"/> </Toast.Body>
       </Toast>
     </Container>
   );

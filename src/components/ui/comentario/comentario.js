@@ -6,7 +6,7 @@ const Comentario = ({ rating, name, comment, place, location, userPhoto }) => {
     <div className="comment-card">
       <Col xs={1} className="comment-progress">
         <div className="rating">
-          <h5>Rating: {rating}</h5>
+          <h5>{rating}</h5>
           <ProgressBar now={(rating / 5) * 100} height="10px" />
         </div>
       </Col>
