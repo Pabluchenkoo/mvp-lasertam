@@ -1,6 +1,8 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Calendario from "../Calendar/calendario";
+import MiNegocioPage from '../miNegocio/MiNegocioPage';
+import PQRsPage from '../PQRs/PQRsPage';
 
 
 function Contenido(){
@@ -13,8 +15,9 @@ function Contenido(){
             <Route path="mail" element={<div>Mail</div>} />
             <Route path="conversaciones" element={<div>Conversaciones</div>} />
             <Route path="configuracion" element={<div>Configuración</div>} />
-            <Route path="pqrs" element={<div>PQRs</div>} />
+            <Route path="pqrs" element={<PQRsPage />} />
             <Route path="negocios" element={<div>Negocios</div>} />
+            <Route path="comentarios" element={<MiNegocioPage />} />
         </Routes>
     </div>);
 }

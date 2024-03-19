@@ -1,10 +1,22 @@
 {
-    "MiNegocio.location": "Ubicación:",
+    "MiNegocio.location": "Ubicación",
     "MiNegocio.comments": "Comentarios del Negocio",
     "MiNegocio.reply": "Responder",
     "MiNegocio.enterReply": "Escribe tu respuesta...",
     "MiNegocio.send": "Enviar",
     "MiNegocio.yourReply": "Tu respuesta:",
     "MiNegocio.averageRating": "Promedio de Ratings",
-    "MiNegocio.notificacion": "¡Has respondido al comentario!"
+    "MiNegocio.notificacion": "¡Has respondido al comentario!",
+    "form.create": "Crear Nuevo Comentario",
+    "form.name": "Nombre",
+    "form.name2": "Ingresu su nombre...",
+    "form.rating": "Puntaje",
+    "form.comment": "Comentario",
+    "form.comment2": "Ingrese su comentario...",
+    "form.business": "Negocio",
+    "form.business2": "Ingrese el negocio...",
+    "form.location": "Ubicación",
+    "form.location2": "Ingrese la ubicación...",
+    "form.send": "Enviar",
+    "form.rating2": "Ingrese el puntaje..."
   }
