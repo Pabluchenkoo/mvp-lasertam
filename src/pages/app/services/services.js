@@ -56,7 +56,7 @@ function Services() {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/services.json?token=GHSAT0AAAAAACOPJUOE7I47YRHJQREDGA64ZPY4E2A"
+      "https://raw.githubusercontent.com/jmontenegroc/datos/main/services.json"
     )
       .then((response) => response.json())
       .then((data) => setServices(data))

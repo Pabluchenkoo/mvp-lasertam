@@ -32,7 +32,7 @@ function Negocios() {
   }
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/negocios.json?token=GHSAT0AAAAAACOPJUOEU5EH324I4I4DK4PYZPZAA7Q"
+      "https://raw.githubusercontent.com/jmontenegroc/datos/main/negocios.json"
     )
       .then((response) => response.json())
       .then((data) => setNegocios(data))
