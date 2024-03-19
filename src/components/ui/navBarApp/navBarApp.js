@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input } from 'antd';
-import { UserOutlined, BellOutlined, SearchOutlined } from '@ant-design/icons';
+import { BellOutlined, SearchOutlined } from '@ant-design/icons';
 
 const NavBarApp = () => {
     return (
