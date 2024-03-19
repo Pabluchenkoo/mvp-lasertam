@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {formatDateToInputDateTimeLocal, modalStyle} from "./auxiliaryFunc";
+import FetchProfessionals from "./hooks/fetchProfessionals";
 
 
 
@@ -12,20 +13,8 @@ const EventModal = ({ isOpen, onClose, onSave, event }) => {
     const [professional,setProfessional] = useState('')
     const [comentarios, setComentarios] = useState('');
 
-    const [professionalsList, setProfessionalsList] = useState([]);
 
-    useEffect(() => {
-
-        fetch('https://raw.githubusercontent.com/Pabluchenkoo/webFetchs/main/professionals.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => setProfessionalsList(data))
-            .catch(error => console.error('There has been a problem with your fetch operation:', error));
-    }, []);
+    const professionalsList = FetchProfessionals();
     // console.log(professionalsList)
 
 
