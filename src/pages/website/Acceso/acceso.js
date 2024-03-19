@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import "./acceso.css";
-import { Button, Card, Col } from "react-bootstrap"; // Agregamos Col de react-bootstrap para una mejor distribución
+import { Button, Card } from "react-bootstrap"; 
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import RegistroForm from "./RegistroForm";
@@ -36,18 +36,12 @@ const Acceso = (props) => {
         }
     };
 
-    const validarCorreo = async (correo) => {
-        const url = 'https://juanse2003.github.io/APIusuarios.github.io/MOCK_DATA.json';
-        const response = await fetch(url);
-        const data = await response.json();
-        return data.some((usuario) => usuario.email === correo);
-    };
-
     const validarLogin = async (correo, password) => {
-        const url = 'https://juanse2003.github.io/APIusuarios.github.io/MOCK_DATA.json';
+        const url = 'https://raw.githubusercontent.com/JuanSe2003/facturas/main/usuarios.json';
         const response = await fetch(url);
         const data = await response.json();
-        return data.some((usuario) => usuario.email === correo && usuario.password === password);
+        const usuario = data.find(user => user.email === correo && user.password === password);
+        return usuario;
     };
 
     const handleRoleSelect = (role) => {
@@ -58,13 +52,15 @@ const Acceso = (props) => {
         if (props.type === "signup") {
             setRegistroExitoso(true);
             await guardarUsuario(data);
-            navigate('/cliente');
+            navigate(selectedRole === "administrador" ? '/administrador' : '/cliente');
         } else {
-            const existe = await validarLogin(data.email, data.password);
-            if (existe) {
-                navigate('/cliente');
+            const usuario = await validarLogin(data.email, data.password);
+            if (usuario) {
+                setExisteUsuario(true);
+                navigate(usuario.role === "administrador" ? '/administrador' : '/cliente');
+            } else {
+                setExisteUsuario(false);
             }
-            setExisteUsuario(existe);
         }
     };
 
@@ -81,7 +77,7 @@ const Acceso = (props) => {
                     <>
                         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
                             <Card style={{ width: '10rem', marginRight: '10px' }} onClick={() => handleRoleSelect("administrador")}>
-                                <Card.Img variant="top" src="imagen_administrador.jpg" />
+                                <Card.Img variant="top" src="../../../assets/pexels-cottonbro-studio-6804099.jpg" />
                                 <Card.Body>
                                     <Card.Title>Administrador</Card.Title>
                                 </Card.Body>
@@ -97,7 +93,7 @@ const Acceso = (props) => {
                     </>
                 )}
                 {props.type !== "signup" && (
-                    <Form onSubmit={handleSubmit(handleFormSubmit)} className="mb-3"> {/* Agregamos una clase para un mejor espaciado */}
+                    <Form onSubmit={handleSubmit(handleFormSubmit)} className="mb-3"> 
                         <FloatingLabel controlId="floatingInput" label="Email address">
                             <Form.Control type="email" placeholder="Email" {...register('email', { required: true })} />
                             {errors.email && <p>This field is required</p>}
@@ -110,10 +106,11 @@ const Acceso = (props) => {
                             />
                             {errors.password && <p>This field is required</p>}
                         </FloatingLabel>
-                        <Button onClick={toggleShowPassword} variant="secondary" className="mt-3 me-2"> {/* Ajustamos las clases de Bootstrap para un mejor aspecto */}
+                        <Button block={showPassword ? "true" : "false"} onClick={toggleShowPassword} variant="secondary" className="mt-3 me-2">
                             {showPassword ? "Hide" : "Show"} Password
                         </Button>
                         <Button type="submit" variant="primary" className="mt-3">Login</Button>
+                        {existeUsuario === false && <p style={{ color: 'red' }}></p>}
                     </Form>
                 )}
             </div>
