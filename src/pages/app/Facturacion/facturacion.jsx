@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Form, Button, Table, Modal } from 'react-boo
 import { FormattedMessage, useIntl } from 'react-intl';
 
 
-const ContainerExample = () => {
+const Facturacion = () => {
     const intl = useIntl();
 
     const [formData, setFormData] = useState({
@@ -235,4 +235,4 @@ const ContainerExample = () => {
     );
     };
 
-export default ContainerExample;
+export default Facturacion;

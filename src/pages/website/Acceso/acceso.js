@@ -76,19 +76,24 @@ const Acceso = (props) => {
             {props.type === "signup" && (
                 <>
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-                        <Card style={{ width: '10rem', marginRight: '10px' }} onClick={() => handleRoleSelect("administrador")}>
-                            <Card.Img variant="top" src="../../../assets/pexels-cottonbro-studio-6804099.jpg" />
-                            <Card.Body>
-                                <Card.Title><FormattedMessage id="registro.rol_administrador" /></Card.Title>
-                            </Card.Body>
-                        </Card>
-                        <Card style={{ width: '10rem' }} onClick={() => handleRoleSelect("usuario")}>
-                            <Card.Img variant="top" src="imagen_usuario.jpg" />
-                            <Card.Body>
-                                <Card.Title><FormattedMessage id="registro.rol_usuario" /></Card.Title>
-                            </Card.Body>
-                        </Card>
+                        <div style={{ width: '25rem', marginRight: '10px' }}>
+                            <Card onClick={() => handleRoleSelect("administrador")}>
+                                <Card.Img variant="top" src="https://fastly.picsum.photos/id/366/4000/3000.jpg?hmac=zphhHOH9ofToN2jNHd8z-nc98NrBd8y2okWXEXetLDg" style={{ height: '200px', objectFit: 'cover' }} />
+                                <Card.Body>
+                                    <Card.Title><FormattedMessage id="registro.rol_administrador" /></Card.Title>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                        <div style={{ width: '25rem' }}>
+                            <Card onClick={() => handleRoleSelect("usuario")}>
+                                <Card.Img variant="top" src="https://fastly.picsum.photos/id/550/1536/2304.jpg?hmac=mnJfrEvgr9KN09x3DUaGFzLk6DiN1fmi4H5LjHgyIzk" style={{ height: '200px', objectFit: 'cover' }} />
+                                <Card.Body>
+                                    <Card.Title><FormattedMessage id="registro.rol_usuario" /></Card.Title>
+                                </Card.Body>
+                            </Card>
+                        </div>
                     </div>
+
                     <RegistroForm role={selectedRole} onSubmit={handleFormSubmit} />
                 </>
             )}
