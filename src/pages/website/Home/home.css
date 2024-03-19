@@ -20,3 +20,7 @@ img{
     height: 600px;
 }
 
+.horizontal-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
+}
