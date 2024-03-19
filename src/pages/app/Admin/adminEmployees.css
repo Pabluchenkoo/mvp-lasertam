@@ -10,3 +10,35 @@
 .image{
     height: 200px;
 }
+
+.forms{
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.forms label{
+    text-align: left;
+    display: block;
+}
+
+.forms h2{
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.forms input, .forms textarea, .forms select{
+    width: 100%;
+    padding: 6px 10px;
+    margin: 10px 0;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: block;
+}
+.forms button{
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid black;
+    cursor: pointer;
+}
