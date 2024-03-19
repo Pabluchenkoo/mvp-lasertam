@@ -14,6 +14,7 @@ function Contenido(){
             <Route path="conversaciones" element={<div>Conversaciones</div>} />
             <Route path="configuracion" element={<div>Configuración</div>} />
             <Route path="pqrs" element={<div>PQRs</div>} />
+            <Route path="negocios" element={<div>Negocios</div>} />
         </Routes>
     </div>);
 }
