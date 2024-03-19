@@ -2,16 +2,15 @@ import {
     BarChartOutlined,
     BookOutlined,
     CalendarOutlined,
-    HeatMapOutlined,
-    QuestionOutlined, SettingOutlined
+    QuestionOutlined, SettingOutlined,
+    HeatMapOutlined
 } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, {useState} from "react";
+import {useNavigate, useLocation} from "react-router-dom";
+import {Layout, Menu} from "antd";
 import './sideMenu.css';
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
-const intl = useIntl();
 const { Sider } = Layout;
 
 
@@ -33,18 +32,17 @@ function getMenuItem(path) {
 
     const titulos = [
 
-        getItem('Mi negocio', 'miNegocio', <BookOutlined />,[
-            getItem('Comentarios', 'comentarios'),
-            getItem('Facturación', 'facturacion'),
-            getItem('Empleados', 'empleados')],),
-        getItem('Administración', 'administracion', <BarChartOutlined />),
-        getItem('Calendario', 'calendario', <CalendarOutlined />),
-        getItem('configuración', 'configuracion', <SettingOutlined />),
-        getItem('PQRs', 'pqrs', <QuestionOutlined />),
+        getItem(<FormattedMessage id="side.minegocio" />, 'miNegocio', <BookOutlined />,[
+            getItem(<FormattedMessage id="side.comentarios" />, 'comentarios'),
+            getItem(<FormattedMessage id="side.facturacion" />, 'facturacion'),
+            getItem(<FormattedMessage id="side.empleados" />, 'empleados')],),
+        getItem(<FormattedMessage id="side.administracion" />, 'administracion', <BarChartOutlined />),
+        getItem(<FormattedMessage id="side.calendario" />, 'calendario', <CalendarOutlined />),
+        getItem(<FormattedMessage id="side.pqr" />, 'pqrs', <QuestionOutlined />),
     ];
 
     if (path.startsWith('/cliente')) {
-        titulos.push(getItem('Explorar negocios ', 'negocios', <HeatMapOutlined />))
+        titulos.push(getItem(<FormattedMessage id="side.explorar" />, 'negocios', <HeatMapOutlined />))
         return titulos.filter((item) => (item.key !== 'administracion') && (item.key !== 'configuracion') && (item.key !== 'miNegocio') )
     }
 
