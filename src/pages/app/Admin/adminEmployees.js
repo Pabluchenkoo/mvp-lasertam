@@ -111,7 +111,7 @@ function AdminEmployees({event}) {
           </div>
         ))}
       </div>
-        <EventForm/>
+
     </div>
 
   );
