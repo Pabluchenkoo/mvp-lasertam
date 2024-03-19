@@ -29,6 +29,7 @@ function getItem(
 const titulos = [
     // getItem('Dashboard', 'dashboard', <PieChartOutlined />),
     getItem('Mi negocio', 'miNegocio', <BookOutlined />,[
+        getItem('Negocio', 'negocio'),
         getItem('Facturación', 'facturacion'),
         getItem('Empleados', 'empleados')],),
     getItem('Administración', 'administracion', <BarChartOutlined />),

@@ -1,3 +1,10 @@
 {
-    "miNegocio.notificacion": "You have replied to the comment!"
+    "MiNegocio.location": "Location:",
+    "MiNegocio.comments": "Business Comments",
+    "MiNegocio.reply": "Reply",
+    "MiNegocio.enterReply": "Enter your reply...",
+    "MiNegocio.send": "Send",
+    "MiNegocio.yourReply": "Your Reply:",
+    "MiNegocio.averageRating": "Average Ratings",
+    "MiNegocio.notificacion": "You have replied to the comment!"
 }

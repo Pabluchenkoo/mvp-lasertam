@@ -7,11 +7,10 @@ function MiNegocioPage() {
   const [comments, setComments] = useState({});
   const [averageRating, setAverageRating] = useState(0);
   const [showReplyForm, setShowReplyForm] = useState({});
-  const [replies, setReplies] = useState({});
   const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
-    fetch('https://my.api.mockaroo.com/negocios.json?key=16ada500')
+    fetch('https://my.api.mockaroo.com/negocio.json?key=7379cdd0')
       .then(response => response.json())
       .then(data => {
         setNegocioInfo(data[0]);
@@ -22,7 +21,7 @@ function MiNegocioPage() {
   useEffect(() => {
     if (!negocioInfo || !negocioInfo.business) return;
 
-    fetch('https://my.api.mockaroo.com/test_schema.json?key=16ada500')
+    fetch('https://my.api.mockaroo.com/comments.json?key=7379cdd0')
       .then(response => response.json())
       .then(data => {
         if (!data || data.error) {

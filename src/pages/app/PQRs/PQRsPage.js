@@ -16,9 +16,15 @@ function PQRsPage() {
   const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
-    fetch('https://my.api.mockaroo.com/test_schema.json?key=16ada500')
+    fetch('https://my.api.mockaroo.com/comments.json?key=7379cdd0')
       .then(response => response.json())
-      .then(data => setComments(data))
+      .then(data => {
+        if (Array.isArray(data)) {
+          setComments(data);
+        } else {
+          console.error('Error fetching comments: Data is not an array');
+        }
+      })
       .catch(error => console.error('Error fetching comments:', error));
   }, []);
 

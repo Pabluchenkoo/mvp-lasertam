@@ -1,19 +1,10 @@
 {
-    "header.profile": "Perfil",
-    "header.home": "Inicio",
-    "home.details": "Detalles del Post",
-    "perfil.username": "Nombre de usuario",
-    "perfil.name": "Nombre",
-    "perfil.description": "Descripción",
-    "perfil.url": "URL",
-    "perfil.edit": "Editar",
-    "perfil.save": "Guardar",
-    "perfil.cancel": "Cancelar",
-    "perfil.back_home": "Volver al Inicio",
-    "post_detail.post_details": "Detalles del Post",
-    "post_detail.close": "Cerrar",
-    "header.url": "URL",
-    "header.posts_number": "Número de publicaciones",
-    "header.quantity": "Cantidad",
-    "header.following_quantity": "Cantidad de seguidores"
+    "MiNegocio.location": "Ubicación:",
+    "MiNegocio.comments": "Comentarios del Negocio",
+    "MiNegocio.reply": "Responder",
+    "MiNegocio.enterReply": "Escribe tu respuesta...",
+    "MiNegocio.send": "Enviar",
+    "MiNegocio.yourReply": "Tu respuesta:",
+    "MiNegocio.averageRating": "Promedio de Ratings",
+    "MiNegocio.notificacion": "¡Has respondido al comentario!"
   }
