@@ -134,5 +134,19 @@
     "eventForm.placeTitle": "Place a title",
     "eventForm.startDate": "Start date",
     "eventForm.endDate": "End date",
-    "eventForm.addEvent": "Add Event"
+    "eventForm.addEvent": "Add Event",
+    "adminEmployees.employess": "Employess",
+    "adminEmployees.bestEmployee": "Bests employess of the week",
+    "adminEmployees.firstname": "First Name",
+    "adminEmployees.lastname": "Last Name",
+    "adminEmployees.role": "Role",
+    "adminEmployees.number": "Phone number",
+    "adminEmployees.email": "Mail",
+    "adminEmployees.gender": "Gender",
+    "adminEmployees.earnings": "Earnings",
+    "adminEmployees.image": "Image",
+    "adminEmployees.description1": "Obtained one of the best earnings with the value of",
+    "adminEmployees.description2": "from a total of",
+    "adminEmployees.description3": " Which is around ",
+    "adminEmployees.description4": " of the total"
 }

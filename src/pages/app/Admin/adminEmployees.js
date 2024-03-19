@@ -1,12 +1,26 @@
 import { Avatar, Space, Table, Typography } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Card from 'react-bootstrap/Card';
 import './adminEmployees.css';
-import EventForm from "./eventForm";
+import { FormattedMessage, useIntl } from 'react-intl';
 
+//Otra vista
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
-function AdminEmployees({event}) {
+function AdminEmployees() {
+    //FORMS
+    const [title, setTitle] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    const [professional,setProfessional] = useState('');
+    const [comentarios, setComentarios] = useState('');
 
+    const hableSubmit = (e) => {
+        e.preventDefault();
+        const reservation = {title, startDate, endDate, professional, comentarios};
+        console.log(reservation);
+    }
 //NO FORMS
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
@@ -47,43 +61,43 @@ function AdminEmployees({event}) {
     <div>
       <div>
         <Space size={5} direction="vertical">
-          <Typography.Title level={10}>Employees</Typography.Title>
+          <Typography.Title level={10}><FormattedMessage id={"adminEmployees.employess"}/></Typography.Title>
           <Table
             loading={loading}
             columns={[
               {
-                title: "Image",
+                title: <FormattedMessage id={"adminEmployees.image"}/>,
                 dataIndex: "image",
                 render: (link) => {
-                  return <Avatar src={link} />;
+                  return <Avatar alt="imagen_empleados" src={link} />;
                 },
               },
               {
-                title: "First Name",
+                title: <FormattedMessage id={"adminEmployees.firstname"}/>,
                 dataIndex: "first_name",
               },
               {
-                title: "Last Name",
+                title: <FormattedMessage id={"adminEmployees.lastname"}/>,
                 dataIndex: "last_name",
               },
               {
-                title: "Role",
+                title: <FormattedMessage id={"adminEmployees.role"}/>,
                 dataIndex: "role",
               },
               {
-                title: "Phone number",
+                title: <FormattedMessage id={"adminEmployees.number"}/>,
                 dataIndex: "phone",
               },
               {
-                title: "Email",
+                title: <FormattedMessage id={"adminEmployees.email"}/>,
                 dataIndex: "email",
               },
               {
-                title: "Gender",
+                title: <FormattedMessage id={"adminEmployees.gender"}/>,
                 dataIndex: "gender",
               },
               {
-                title: "Earnings",
+                title: <FormattedMessage id={"adminEmployees.earnings"}/>,
                 dataIndex: "earnings",
               }
             ]}
@@ -94,7 +108,7 @@ function AdminEmployees({event}) {
           ></Table>
         </Space>
       </div>
-      <h2>Best employees of the week</h2>
+      <h2><FormattedMessage id={"adminEmployees.bestEmployee"}/></h2>
       <div className="card-container">
         {primerosTres.map(item => (
           <div className="card">
@@ -103,19 +117,17 @@ function AdminEmployees({event}) {
               <Card.Body>
                 <Card.Title>{item.first_name} {item.last_name}</Card.Title>
                 <Card.Text>
-                  Obtained one of the best earnings with the value of: {item.earnings} from a total of ${total}. Which is around
-                  %{(parseFloat(item.earnings.replace("$", ""))/total*100).toFixed(2)} of the total.
+                  <FormattedMessage id={"adminEmployees.description1"}/>: {item.earnings} <FormattedMessage id={"adminEmployees.description2"}/> ${total}.
+                  <FormattedMessage id={"adminEmployees.description3"}/> %{(parseFloat(item.earnings.replace("$", ""))/total*100).toFixed(2)} 
+                  <FormattedMessage id={"adminEmployees.description4"}/>.
                 </Card.Text>
               </Card.Body>
             </Card>
           </div>
         ))}
       </div>
-
     </div>
 
   );
 }
 export default AdminEmployees;
-
-

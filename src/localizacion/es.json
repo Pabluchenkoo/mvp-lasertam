@@ -134,5 +134,19 @@
     "eventForm.placeTitle": "Titulo",
     "eventForm.startDate": "Fecha inicio",
     "eventForm.endDate": "Fecha fin",
-    "eventForm.addEvent": "Añadir evento"
+    "eventForm.addEvent": "Añadir evento",
+    "adminEmployees.employess": "Empleados",
+    "adminEmployees.bestEmployee": "Mejores empleados semanales",
+    "adminEmployees.firstname": "Nombres",
+    "adminEmployees.lastname": "Apellidos",
+    "adminEmployees.role": "Rol",
+    "adminEmployees.number": "Número celular",
+    "adminEmployees.email": "Correo",
+    "adminEmployees.gender": "Género",
+    "adminEmployees.earnings": "Ganancias",
+    "adminEmployees.image": "Imagen",
+    "adminEmployees.description1": "Obtuvo una de las mejores ganancias con un valor de",
+    "adminEmployees.description2": "de un total de",
+    "adminEmployees.description3": " Lo que equivale a un ",
+    "adminEmployees.description4": " del total"
 }
