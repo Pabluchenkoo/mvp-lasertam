@@ -16,17 +16,22 @@ function PQRsPage() {
   const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
-    fetch('https://my.api.mockaroo.com/comments.json?key=7379cdd0')
-      .then(response => response.json())
-      .then(data => {
-        if (Array.isArray(data)) {
-          setComments(data);
-        } else {
-          console.error('Error fetching comments: Data is not an array');
-        }
-      })
-      .catch(error => console.error('Error fetching comments:', error));
+    fetchComments();
   }, []);
+
+  const fetchComments = async () => {
+    try {
+      const response = await fetch('https://api.github.com/repos/Programacion-con-Tecnologias-Web/Datos/contents/comments.json');
+      if (!response.ok) {
+        throw new Error('Error fetching comments: Network response was not ok');
+      }
+      const data = await response.json();
+      const commentsContent = JSON.parse(atob(data.content));
+      setComments(commentsContent);
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+    }
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -47,7 +52,7 @@ function PQRsPage() {
       place: '',
       location: ''
     });
-    setShowNotification(true); 
+    setShowNotification(true);
     setTimeout(() => setShowNotification(false), 5000);
   };
 

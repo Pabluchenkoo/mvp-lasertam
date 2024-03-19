@@ -10,24 +10,27 @@ function MiNegocioPage() {
   const [showReplyForm, setShowReplyForm] = useState({});
   const [showNotification, setShowNotification] = useState(false);
 
-
   useEffect(() => {
-    fetch('https://my.api.mockaroo.com/negocio.json?key=7379cdd0')
-      .then(response => response.json())
-      .then(data => {
-        setNegocioInfo(data[0]);
-      })
-      .catch(error => console.error('Error fetching business info:', error));
+    const fetchNegocioInfo = async () => {
+      try {
+        const negocioResponse = await fetch('https://raw.githubusercontent.com/Programacion-con-Tecnologias-Web/Datos/main/negocios.json');
+        const negocioData = await negocioResponse.json();
+        setNegocioInfo(negocioData[0]);
+      } catch (error) {
+        console.error('Error fetching business info:', error);
+      }
+    };
+
+    fetchNegocioInfo();
   }, []);
 
   useEffect(() => {
-    if (!negocioInfo || !negocioInfo.business) return;
-
-    fetch('https://my.api.mockaroo.com/comments.json?key=7379cdd0')
-      .then(response => response.json())
-      .then(data => {
-        if (!data || data.error) {
-          console.error('Error fetching comments:', data && data.error ? data.error : 'Unknown error');
+    const fetchComments = async () => {
+      try {
+        const commentsResponse = await fetch('https://raw.githubusercontent.com/Programacion-con-Tecnologias-Web/Datos/main/comments.json');
+        const commentsData = await commentsResponse.json();
+        if (!commentsData || commentsData.error) {
+          console.error('Error fetching comments:', commentsData && commentsData.error ? commentsData.error : 'Unknown error');
           return;
         }
 
@@ -35,8 +38,8 @@ function MiNegocioPage() {
         let totalRating = 0;
         let numberOfComments = 0;
 
-        for (const key in data) {
-          const comment = data[key];
+        for (const key in commentsData) {
+          const comment = commentsData[key];
           if (comment.place === negocioInfo.business) {
             filteredComments[key] = {
               id: key,
@@ -55,8 +58,14 @@ function MiNegocioPage() {
         const average = numberOfComments > 0 ? totalRating / numberOfComments : 0;
         setComments(filteredComments);
         setAverageRating(average);
-      })
-      .catch(error => console.error('Error fetching comments:', error));
+      } catch (error) {
+        console.error('Error fetching comments:', error);
+      }
+    };
+
+    if (negocioInfo && negocioInfo.business) {
+      fetchComments();
+    }
   }, [negocioInfo]);
 
   const handleReply = (commentId) => {
