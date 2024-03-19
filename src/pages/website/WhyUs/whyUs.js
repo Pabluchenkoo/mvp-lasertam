@@ -1,10 +1,11 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 const WhyUs = () => {
 
         return (
             <>
-                <h1>Por qué elegirnos</h1>
+                <h1><FormattedMessage id="why.title"/></h1>
             </>
         );
 }

@@ -35,5 +35,27 @@
     "pqr.not": "¡PQR Creada!",
     "pqr.notificacion": "¡Has enviado un nuevo comentario!",
     "pqr.crear": "Crear",
-    "pqr.search": "Buscar comentarios..."
-  }
+    "pqr.search": "Buscar comentarios...",
+    "homecarousel.gestiona": "Gestiona tu negocio",
+    "homecarousel.servicios": "10 + servicios",
+    "homecarousel.clientes": "Clientes reservan",
+    "homecarousel.clientes2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "homecarousel.third": "Peluquerías buenas",
+    "homecarousel.third2": "Praesent commodo cursus magna, vel scelerisque nisl consectetur",
+    "home.gestiona": "Maneja tu equipo",
+    "work.title": "Trabajo con nosotros",
+    "why.title": "¿Por qué elegirnos?",
+    "services.title": "Servicios",
+    "precio.title": "Precios",
+    "barra.action": "Otra acción",
+    "barra.action2": "Acción",
+    "barra.action3": "Algo",
+    "barra.action4": "Link separado",
+    "barra.services": "Servicios",
+    "barra.work": "Trabaja con nosotros",
+    "barra.pricing": "Precio",
+    "barra.why": "Por qué elegirnos?",
+    "barra.signup": "Registrarse",
+    "barra.login": "Iniciar sesión"
+
+}
