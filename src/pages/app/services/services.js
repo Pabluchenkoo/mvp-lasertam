@@ -4,8 +4,9 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
-import Modal from "react-bootstrap/Modal"; // Importa el componente Modal de react-bootstrap
+import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
+import { FormattedMessage } from "react-intl";
 import "./services.css";
 
 function Services() {
@@ -14,7 +15,7 @@ function Services() {
   const [showEdit, setshowEdit] = useState(false);
   const [serviceId, setServiceId] = useState(null);
   const [selectedService, setSelectedService] = useState("");
-  const [editServiceValue, setEditServiceValue] = useState(""); // Nuevo estado para el valor del campo de texto
+  const [editServiceValue, setEditServiceValue] = useState("");
 
   const editarServicio = () => {
     const existingService = services.find(
@@ -24,7 +25,7 @@ function Services() {
     if (existingService) {
       const newServices = services.map((service) => {
         if (service.id === selectedService.id) {
-          return { ...service, service: editServiceValue }; // Actualiza el servicio con el nuevo valor
+          return { ...service, service: editServiceValue }; 
         }
         return service;
       });
@@ -56,7 +57,7 @@ function Services() {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/services.json?token=GHSAT0AAAAAACOPJUOE7I47YRHJQREDGA64ZPY4E2A"
+      "https://raw.githubusercontent.com/jmontenegroc/datos/main/services.json"
     )
       .then((response) => response.json())
       .then((data) => setServices(data))
@@ -82,7 +83,7 @@ function Services() {
                     textAlign: "left",
                   }}
                 >
-                  Agregar nuevo servicio
+                  <FormattedMessage id="admin.as" />
                 </Col>
                 <Col xs={1}>
                   <Image
@@ -145,27 +146,27 @@ function Services() {
 
         <Modal show={showDelete} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Eliminar Servicio</Modal.Title>
+            <Modal.Title><FormattedMessage id="admin.tds" /></Modal.Title>
           </Modal.Header>
-          <Modal.Body>¿Está seguro que desea eliminar este servicio</Modal.Body>
+          <Modal.Body><FormattedMessage id="admin.ss" /></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-              Cancelar
+            <FormattedMessage id="admin.cancelar" />
             </Button>
             <Button variant="secondary" onClick={borrarServicio}>
-              Aceptar
+            <FormattedMessage id="admin.aceptar" />
             </Button>
           </Modal.Footer>
         </Modal>
 
         <Modal show={showEdit} onHide={handleCloseEdit}>
           <Modal.Header closeButton>
-            <Modal.Title>Editar Servicio</Modal.Title>
+            <Modal.Title><FormattedMessage id="admin.tes" /></Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
               <Form.Group controlId="formBasicEmail">
-                <Form.Label>Nombre del Servicio:</Form.Label>
+                <Form.Label><FormattedMessage id="admin.nombre" /></Form.Label>
                 <Form.Control
                   type="text"
                   value={editServiceValue}
@@ -177,10 +178,10 @@ function Services() {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseEdit}>
-              Cancelar
+            <FormattedMessage id="admin.cancelar" />
             </Button>
             <Button variant="secondary" onClick={editarServicio}>
-              Aceptar
+            <FormattedMessage id="admin.aceptar" />
             </Button>
           </Modal.Footer>
         </Modal>

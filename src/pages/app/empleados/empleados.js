@@ -4,9 +4,11 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
-import Modal from "react-bootstrap/Modal"; // Importa el componente Modal de react-bootstrap
+import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
+import { FormattedMessage } from "react-intl";
 import "./empleados.css";
+
 
 function Empleados() {
   const [empleados, setEmpleados] = useState([]);
@@ -76,7 +78,7 @@ function Empleados() {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/empleados.json?token=GHSAT0AAAAAACOPJUOEQ5KTRC7PKVA73VSQZPY4EOQ"
+      "https://raw.githubusercontent.com/jmontenegroc/datos/main/empleados.json"
     )
       .then((response) => response.json())
       .then((data) => setEmpleados(data))
@@ -102,7 +104,7 @@ function Empleados() {
                     textAlign: "left",
                   }}
                 >
-                  Agregar nuevo empleado
+                  <FormattedMessage id="admin.ae"/>
                 </Col>
                 <Col xs={1}>
                   <Image
@@ -168,28 +170,28 @@ function Empleados() {
 
         <Modal show={showDelete} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Eliminar Servicio</Modal.Title>
+            <Modal.Title><FormattedMessage id="admin.tde" /></Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            ¿Está seguro que desea eliminar a este empleado?
+            <FormattedMessage id="admin.se" />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-              Cancelar
+            <FormattedMessage id="admin.cancelar" />
             </Button>
             <Button variant="secondary" onClick={borrarEmpleado}>
-              Aceptar
+            <FormattedMessage id="admin.aceptar" />
             </Button>
           </Modal.Footer>
         </Modal>
         <Modal show={showEdit} onHide={handleCloseEdit}>
           <Modal.Header closeButton>
-            <Modal.Title>Editar Empleado</Modal.Title>
+            <Modal.Title><FormattedMessage id="admin.tee" /></Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
               <Form.Group controlId="formBasicNombre">
-                <Form.Label>Nombre del Empleado:</Form.Label>
+                <Form.Label><FormattedMessage id="admin.nombre" /></Form.Label>
                 <Form.Control
                   type="text"
                   value={editEmployeeNombre}
@@ -199,7 +201,7 @@ function Empleados() {
               </Form.Group>
 
               <Form.Group controlId="formBasicApellido">
-                <Form.Label>Apellido del Empleado:</Form.Label>
+                <Form.Label><FormattedMessage id="admin.apellido" /></Form.Label>
                 <Form.Control
                   type="text"
                   value={editEmployeeApellido}
@@ -209,7 +211,7 @@ function Empleados() {
               </Form.Group>
 
               <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email del Empleado:</Form.Label>
+                <Form.Label><FormattedMessage id="admin.email" /></Form.Label>
                 <Form.Control
                   type="email"
                   value={editEmployeeEmail}
@@ -219,7 +221,7 @@ function Empleados() {
               </Form.Group>
 
               <Form.Group controlId="formBasicFoto">
-                <Form.Label>Foto del Empleado:</Form.Label>
+                <Form.Label><FormattedMessage id="admin.foto" /></Form.Label>
                 <Form.Control
                   type="text"
                   value={editEmployeeFoto}
@@ -231,10 +233,10 @@ function Empleados() {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseEdit}>
-              Cancelar
+            <FormattedMessage id="admin.cancelar" />
             </Button>
             <Button variant="primary" onClick={handleEditEmployee}>
-              Guardar Cambios
+            <FormattedMessage id="admin.aceptar" />
             </Button>
           </Modal.Footer>
         </Modal>

@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import FetchProfessionals from "../Calendar/modal/hooks/fetchProfessionals";
 
 
 
-const EventForm = (event) => {
+const EventForm = (props ) => {
 
     const [title, setTitle] = useState('');
     const [professional,setProfessional] = useState('');
     const [comentarios, setComentarios] = useState('');
-    const [startDate, setStartDate] = useState(event?.start ? event.start.toISOString().slice(0,16) : '');
-    const [endDate, setEndDate] = useState(event?.end ? event.end.toISOString().slice(0,16) : '');
+    const [startDate, setStartDate] = useState(props.event?.start ? props.event.start.toISOString().slice(0,16) : '');
+    const [endDate, setEndDate] = useState(props.event?.end ? props.event.end.toISOString().slice(0,16) : '');
     const professionalsList = FetchProfessionals();
 
     const reservas =[];
@@ -21,6 +21,7 @@ const EventForm = (event) => {
         reservas.push(reservation);
 
         console.log(reservas);
+        props.handleClose();
     }
 
 
