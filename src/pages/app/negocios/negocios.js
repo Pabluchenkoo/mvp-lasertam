@@ -26,7 +26,7 @@ function Negocios() {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/negocios.json?token=GHSAT0AAAAAACOPJUOFR4FZFUTGOBV45OVEZPY3NVQ"
+      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/negocios.json?token=GHSAT0AAAAAACOPJUOE5IWQYCPOHAFDTC4IZPY4TOA"
     )
       .then((response) => response.json())
       .then((data) => setNegocios(data))
