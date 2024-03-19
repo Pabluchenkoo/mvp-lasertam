@@ -9,6 +9,14 @@ import { IntlProvider } from 'react-intl';
 import messages_es from './localizacion/es.json';
 import messages_en from './localizacion/en.json';
 
+
+// Here is where you insert the react-axe configuration
+if (process.env.NODE_ENV !== 'production') {
+    const axe = require('react-axe');
+    axe(React, ReactDOM, 1000); // Adjust the delay as needed for your app
+}
+
+
 const language = navigator.language.split(/[-_]/)[0]; 
 const messages = {
   es: messages_es,

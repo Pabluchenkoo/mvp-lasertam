@@ -121,5 +121,18 @@
     "side.administracion": "Administration",
     "side.calendario": "Schedule",
     "side.explorar": "Explore Businesses",
-    "side.negocios": "Businesses"
+    "side.negocios": "Businesses",
+    "calendarModal.title": "Title",
+    "calendarModal.professional": "In charge professional",
+    "calendarModal.professionals": "Select a Professional",
+    "calendarModal.comentario": "Comment",
+    "calendarModal.placeComentario": "Comments",
+    "calendarModal.save": "Save",
+    "calendarModal.cancel": "Cancel",
+    "eventForm.head": "Submit your reservation",
+    "eventForm.title": "Title",
+    "eventForm.placeTitle": "Place a title",
+    "eventForm.startDate": "Start date",
+    "eventForm.endDate": "End date",
+    "eventForm.addEvent": "Add Event"
 }

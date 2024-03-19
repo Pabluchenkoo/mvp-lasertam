@@ -4,10 +4,11 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import EventModal from "./modal/eventModal";
 import {useLocation} from "react-router-dom"; // Make sure the import is correct based on your file structure
-
+import { FormattedMessage, useIntl } from 'react-intl';
 const localizer = momentLocalizer(moment);
 
 const Calendario = () => {
+    const intl = useIntl();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalMode, setModalMode] = useState('add'); // 'add' or 'edit'
     const [currentEvent, setCurrentEvent] = useState(null);
@@ -62,6 +63,8 @@ const Calendario = () => {
         setIsModalOpen(false);
         setCurrentEvent(null);
     };
+
+
 
     return (
         <>

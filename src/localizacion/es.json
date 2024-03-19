@@ -121,6 +121,18 @@
     "side.administracion": "Administración",
     "side.calendario": "Calendario",
     "side.explorar": "Explorar negocios",
-    "side.negocios": "Negocios"
-
+    "side.negocios": "Negocios",
+    "calendarModal.title": "Titulo",
+    "calendarModal.professional": "Profesional encargado",
+    "calendarModal.professionals": "Selecciona un profesional",
+    "calendarModal.comentario": "Comentario",
+    "calendarModal.placeComentario": "Comentarios",
+    "calendarModal.save": "Guardar",
+    "calendarModal.cancel": "Cancelar",
+    "eventForm.head": "Completa tu reserva",
+    "eventForm.title": "Titulo",
+    "eventForm.placeTitle": "Titulo",
+    "eventForm.startDate": "Fecha inicio",
+    "eventForm.endDate": "Fecha fin",
+    "eventForm.addEvent": "Añadir evento"
 }
