@@ -1,25 +1,12 @@
 import { Avatar, Space, Table, Typography } from "antd";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from 'react-bootstrap/Card';
 import './adminEmployees.css';
+import EventForm from "./eventForm";
 
-//Otra vista
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 
-function AdminEmployees() {
-    //FORMS
-    const [title, setTitle] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [professional,setProfessional] = useState('');
-    const [comentarios, setComentarios] = useState('');
+function AdminEmployees({event}) {
 
-    const hableSubmit = (e) => {
-        e.preventDefault();
-        const reservation = {title, startDate, endDate, professional, comentarios};
-        console.log(reservation);
-    }
 //NO FORMS
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
@@ -124,53 +111,7 @@ function AdminEmployees() {
           </div>
         ))}
       </div>
-      <h2>Completa tu reserva</h2>
-      <div className="forms">
-        <form onSubmit={hableSubmit}>
-            <label>Title</label>
-            <input 
-                type="text"
-                required
-                value={title}
-                onChange={(e)=> setTitle(e.target.value)}
-                />
-            <label>Start date</label>
-            <textarea
-                required
-                value={startDate}
-                onChange={(e)=> setStartDate(e.target.value)}
-                >
-            </textarea>
-            <label>End date</label>
-            <textarea
-                required
-                value={endDate}
-                onChange={(e)=> setEndDate(e.target.value)}
-                >
-            </textarea>
-            <label>Blog autor Professional</label>
-            <select
-                value={professional}
-                onChange={(e)=> setProfessional(e.target.value)}
-                >
-                <option value='mario'>mario</option>
-                <option value='yoshi'>yoshi</option>
-            </select>
-            <label>Comments</label>
-            <textarea
-                required
-                value={comentarios}
-                onChange={(e)=> setComentarios(e.target.value)}
-                >
-            </textarea>
-            <button>Add blog</button>
-            <p>{title}</p>
-            <p>{startDate}</p>
-            <p>{endDate}</p>
-            <p>{professional}</p>
-            <p>{comentarios}</p>
-        </form>
-      </div>
+        <EventForm/>
     </div>
 
   );
@@ -178,22 +119,3 @@ function AdminEmployees() {
 export default AdminEmployees;
 
 
-/*
-        <Form.Select aria-label="Default select example">
-        <option>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-        </Form.Select>
-        <Form>
-            <Form.Group className="mb-3" controlId="formGroupEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formGroupPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
-            </Form.Group>
-        </Form>
-
-*/
