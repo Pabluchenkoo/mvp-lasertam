@@ -5,7 +5,7 @@ import Administracion from '../administracion/administracion';
 import Negocios from '../negocios/negocios';
 import MiNegocioPage from '../miNegocio/MiNegocioPage';
 import PQRsPage from '../PQRs/PQRsPage';
-import ContainerExample from "../Facturacion/facturacion"
+import Facturacion from '../Facturacion/facturacion';
 import AdminEmployees from '../Admin/adminEmployees'
 
 
@@ -13,7 +13,7 @@ import AdminEmployees from '../Admin/adminEmployees'
 function Contenido(){
     return(<div>
         <Routes>
-            <Route path="facturacion" element={<ContainerExample/>} />
+            <Route path="facturacion" element={<Facturacion/>} />
             <Route path="minegocio" element={<div>Mi negocio</div>} />
             <Route path="administracion" element={<Administracion />} />
             <Route path="empleados" element={<AdminEmployees/>} />
