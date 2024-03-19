@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import HomeCarousel from './HomeCarousel';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Row, Col, Button } from 'react-bootstrap';
 
 const Home = () => {
     const [teamMembers, setTeamMembers] = useState([]);
     const [services, setServices] = useState([]);
+
+    const intl = useIntl();
 
     useEffect(() => {
         const loadJSON = (url, setter) => {
@@ -80,37 +82,37 @@ const Home = () => {
             <div className="footer">
                 <Row>
                     <Col>
-                        <h5>Mantente actualizado</h5>
-                        <input type="email" placeholder="Correo electrónico" />
-                        <Button style={{ backgroundColor: '#844685' }}>Suscribirse</Button>
-                        <p>Mantente en contacto con nosotros para recibir novedades, descuentos y ofertas sobre nuestros servicios. ¡No pierdas ninguna oportunidad! ¡Es gratis!</p>
+                        <h5><FormattedMessage id="home.update"/></h5>
+                        <input type="email" placeholder={intl.formatMessage({ id: 'home.email' })} />
+                        <Button style={{ backgroundColor: '#844685' }}><FormattedMessage id="home.suscribe"/></Button>
+                        <p><FormattedMessage id="home.para"/></p>
                     </Col>
                     <Col>
                         <Row>
                             <Col>
-                                <h5>Soporte</h5>
+                                <h5><FormattedMessage id="home.soporte"/></h5>
                                 <ul>
-                                    <li>Información de la cuenta</li>
-                                    <li>FAQ</li>
-                                    <li>Contáctanos</li>
-                                    <li>Centro de ayuda</li>
+                                    <li><FormattedMessage id="home.info"/></li>
+                                    <li><FormattedMessage id="home.faq"/></li>
+                                    <li><FormattedMessage id="home.contact"/></li>
+                                    <li><FormattedMessage id="home.center"/></li>
                                 </ul>
                             </Col>
                             <Col>
-                                <h5>Producto</h5>
+                                <h5><FormattedMessage id="home.producto"/></h5>
                                 <ul>
-                                    <li>CRM</li>
-                                    <li>Precio</li>
-                                    <li>Creador de sitios web</li>
+                                    <li><FormattedMessage id="home.crm"/></li>
+                                    <li><FormattedMessage id="home.precio"/></li>
+                                    <li><FormattedMessage id="home.web"/></li>
                                 </ul>
                             </Col>
                             <Col>
-                                <h5>Organización</h5>
+                                <h5><FormattedMessage id="home.org"/></h5>
                                 <ul>
-                                    <li>Sobre nosotros</li>
-                                    <li>Periódico</li>
-                                    <li>Política de privacidad</li>
-                                    <li>Términos de servicio</li>
+                                    <li><FormattedMessage id="home.us"/></li>
+                                    <li><FormattedMessage id="home.news"/></li>
+                                    <li><FormattedMessage id="home.poli"/></li>
+                                    <li><FormattedMessage id="home.terms"/></li>
                                 </ul>
                             </Col>
                         </Row>
