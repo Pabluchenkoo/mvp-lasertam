@@ -1,5 +1,6 @@
 import React from 'react';
 import HomeCarousel from './HomeCarousel';
+import { FormattedMessage } from 'react-intl';
 
 const Home = () => {
     return (
@@ -11,7 +12,7 @@ const Home = () => {
             <br/>
             <hr/>
 
-            <h4>Manage your team</h4>
+            <h4><FormattedMessage id="home.gestiona"/></h4>
 
         </>
     )

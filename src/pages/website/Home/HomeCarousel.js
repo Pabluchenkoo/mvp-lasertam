@@ -1,6 +1,8 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import "./home.css";
+import { FormattedMessage } from "react-intl";
+
 const HomeCarousel = () => {
 
     return (
@@ -13,8 +15,8 @@ const HomeCarousel = () => {
                         alt="First slide"
                     />
                     <Carousel.Caption>
-                        <h5>Gestiona tu negocio</h5>
-                        <p>+10 servicios</p>
+                        <h5><FormattedMessage id="homecarousel.gestiona"/></h5>
+                        <p><FormattedMessage id="homecarousel.servicios"/></p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -24,8 +26,8 @@ const HomeCarousel = () => {
                         alt="Second slide"
                     />
                     <Carousel.Caption>
-                        <h5>Clientes Reservan</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h5><FormattedMessage id="homecarousel.clientes"/></h5>
+                        <p><FormattedMessage id="homecarousel.clientes2"/></p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -35,9 +37,9 @@ const HomeCarousel = () => {
                         alt="Third slide"
                     />
                     <Carousel.Caption>
-                        <h5>Third slide label</h5>
+                        <h5><FormattedMessage id="homecarousel.third"/></h5>
                         <p>
-                            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                            <FormattedMessage id="homecarousel.third2"/>
                         </p>
                     </Carousel.Caption>
                 </Carousel.Item>
