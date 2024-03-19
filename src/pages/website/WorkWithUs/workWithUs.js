@@ -1,10 +1,11 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 const WorkWithUs = () => {
 
     return (
         <>
-            <h1>Trabaja con nosotros</h1>
+            <h1><FormattedMessage id="work.title"/></h1>
         </>
     );
 }
