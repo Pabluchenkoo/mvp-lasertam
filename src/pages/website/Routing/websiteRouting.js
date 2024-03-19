@@ -18,7 +18,8 @@ function Rutas(){
             <Route path={"/workWithUs"} element={<WorkWithUs/>}/>
             <Route path={"/signUp"} element={<Acceso type={"signup"}/>}/>
             <Route path={"/logIn"} element={<Acceso type={"login"}/>}/>
-            <Route path={"/app/*"} element={<AdminApp/>}/>
+            <Route path={"/administrador/*"} element={<AdminApp/>}/>
+            <Route path={"/cliente/*"} element={<AdminApp/>}/>
         </Routes>
     </div>);
 }

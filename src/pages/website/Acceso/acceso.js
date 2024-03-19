@@ -58,11 +58,11 @@ const Acceso = (props) => {
         if (props.type === "signup") {
             setRegistroExitoso(true);
             await guardarUsuario(data);
-            navigate('/app');
+            navigate('/cliente');
         } else {
             const existe = await validarLogin(data.email, data.password);
             if (existe) {
-                navigate('/app');
+                navigate('/cliente');
             }
             setExisteUsuario(existe);
         }
