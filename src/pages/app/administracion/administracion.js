@@ -42,6 +42,7 @@ function Administracion() {
           alt="Your description"
           style={{ width: "100%", height: "auto" }}
         />
+        <h1>Hair Saloon</h1>
       </Col>
     </Row>
     </Container>

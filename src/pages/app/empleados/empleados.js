@@ -76,7 +76,7 @@ function Empleados() {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/empleados.json?token=GHSAT0AAAAAACOPJUOFQLN5BXMIHMKGEK5CZPYXTFA"
+      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/empleados.json?token=GHSAT0AAAAAACOPJUOEQ5KTRC7PKVA73VSQZPY4EOQ"
     )
       .then((response) => response.json())
       .then((data) => setEmpleados(data))
