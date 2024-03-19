@@ -12,9 +12,7 @@ function Administracion() {
       <Row style={{ marginTop: "30px", marginBottom: "30px" }}>
         <Col xs={1}>
           <button
-            className={`botones_admin ${
-              selectedButton === "servicios" ? "selected" : ""
-            }`}
+            className={`botones_admin ${selectedButton === "servicios" ? "selected" : ""}`}
             onClick={() => setSelectedButton("servicios")}
           >
             Servicios

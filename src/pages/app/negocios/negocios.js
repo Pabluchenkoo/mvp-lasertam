@@ -8,33 +8,39 @@ function Negocios() {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
   const categorias = {
     Inicio: {
-      imagenUrl: "url-de-imagen-para-belleza",
+      imagenUrl: "https://w7.pngwing.com/pngs/170/535/png-transparent-computer-icons-home-house-login-home-angle-rectangle-black.png",
     },
     Belleza: {
-      imagenUrl: "url-de-imagen-para-belleza",
+      imagenUrl: "https://w7.pngwing.com/pngs/165/915/png-transparent-black-lips-illustration-lip-kiss-drawing-smile-lips-miscellaneous-leaf-people.png",
     },
     Cerrajeria: {
-      imagenUrl: "url-de-imagen-para-cerrajeria",
+      imagenUrl: "https://w7.pngwing.com/pngs/131/200/png-transparent-black-key-icon-key-key-angle-text-grey-thumbnail.png",
     },
     Plomeria: {
-      imagenUrl: "url-de-imagen-para-plomeria",
+      imagenUrl: "https://w7.pngwing.com/pngs/205/200/png-transparent-tool-computer-icons-tools-hand-technic-black.png",
     },
     Autos: {
-      imagenUrl: "url-de-imagen-para-autos",
+      imagenUrl: "https://cdn-icons-png.flaticon.com/512/26/26352.png",
     },
   };
-
+  function handleFilter(categoria) {
+    if (categoria === "Inicio") {
+      setCategoriaSeleccionada(null);
+      return;
+    }
+    setCategoriaSeleccionada(categoria);
+  }
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/negocios.json?token=GHSAT0AAAAAACOPJUOE5IWQYCPOHAFDTC4IZPY4TOA"
+      "https://raw.githubusercontent.com/isis3710-uniandes/ISIS3710_202410_S2_E06_Front/j.montenegro/src/pages/data/negocios.json?token=GHSAT0AAAAAACOPJUOEU5EH324I4I4DK4PYZPZAA7Q"
     )
       .then((response) => response.json())
       .then((data) => setNegocios(data))
       .catch((error) => console.error("Error fetching comments:", error));
   }, []);
   function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(lat2 - lat1); // deg2rad below
+    var R = 6371;
+    var dLat = deg2rad(lat2 - lat1); 
     var dLon = deg2rad(lon2 - lon1);
     var a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -43,7 +49,7 @@ function Negocios() {
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c; // Distance in km
+    var d = R * c; 
     return d.toFixed(2);
   }
 
@@ -70,6 +76,7 @@ function Negocios() {
     });
   }
 
+
   return (
     <Container>
       <Row style={{ margin: "20px", textAlign: "left" }}>
@@ -86,15 +93,15 @@ function Negocios() {
         {Object.keys(categorias).map((categoria) => (
           <Col xs={2}>
             <button key={categoria} 
-            className="filtros"
-            onClick={() => setCategoriaSeleccionada(categoria)}
+            className={`filtros ${categoriaSeleccionada === categoria ? "elegida" : ""}`}
+            onClick={() => handleFilter(categoria)}
             >
               <Row>
                 <Col>
                   <img
-                    src="https://img.icons8.com/ios/452/barber-pole.png"
-                    alt="Belleza"
-                    style={{ width: "20px", height: "20px" }}
+                    src={categorias[categoria].imagenUrl}
+                    alt="icono"
+                    style={{ width: "30px", height: "20px" }}
                   />
                 </Col>
                 <Col>{categoria}</Col>
@@ -119,6 +126,7 @@ function Negocios() {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  padding: "20px",
                 }}
               >
                 <Card.Img
