@@ -56,6 +56,15 @@
     "barra.pricing": "Precio",
     "barra.why": "Por qué elegirnos?",
     "barra.signup": "Registrarse",
-    "barra.login": "Iniciar sesión"
+    "barra.login": "Iniciar sesión",
+    "side.minegocio": "Mi negocio",
+    "side.comentarios": "Comentarios",
+    "side.pqr": "PQRs",
+    "side.facturacion": "Facturación",
+    "side.empleados": "Empleados",
+    "side.administracion": "Administración",
+    "side.calendario": "Calendario",
+    "side.explorar": "Explorar negocios",
+    "side.negocios": "Negocios"
 
 }

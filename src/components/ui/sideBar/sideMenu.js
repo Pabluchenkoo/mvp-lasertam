@@ -9,6 +9,9 @@ import { Layout, Menu } from "antd";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import './sideMenu.css';
+import { FormattedMessage, useIntl } from "react-intl";
+
+const intl = useIntl();
 const { Sider } = Layout;
 
 

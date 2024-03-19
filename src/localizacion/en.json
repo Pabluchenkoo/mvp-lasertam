@@ -56,5 +56,14 @@
     "barra.pricing": "Pricing",
     "barra.why": "Why with us?",
     "barra.signup": "Sign Up",
-    "barra.login": "Login"
+    "barra.login": "Login",
+    "side.minegocio": "My business",
+    "side.comentarios": "Comments",
+    "side.pqr": "PQRs",
+    "side.facturacion": "Billing",
+    "side.empleados": "Employees",
+    "side.administracion": "Administration",
+    "side.calendario": "Schedule",
+    "side.explorar": "Explore Businesses",
+    "side.negocios": "Businesses"
 }
