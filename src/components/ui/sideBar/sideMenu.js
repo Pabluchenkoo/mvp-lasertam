@@ -31,6 +31,7 @@ function getMenuItem(path) {
     const titulos = [
 
         getItem('Mi negocio', 'miNegocio', <BookOutlined />,[
+            getItem('Comentarios', 'comentarios'),
             getItem('Facturación', 'facturacion'),
             getItem('Empleados', 'empleados')],),
         getItem('Administración', 'administracion', <BarChartOutlined />),

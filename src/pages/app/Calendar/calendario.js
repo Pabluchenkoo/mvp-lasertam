@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import EventModal from "./modal/eventModal"; // Make sure the import is correct based on your file structure
+import EventModal from "./modal/eventModal";
+import {useLocation} from "react-router-dom"; // Make sure the import is correct based on your file structure
 
 const localizer = momentLocalizer(moment);
 
@@ -22,19 +23,29 @@ const Calendario = () => {
         },
     ]);
     // console.log(events);
+    const location = useLocation();
 
     const handleSelectSlot = ({ start, end }) => {
+        if(location.pathname !== '/cliente/calendario'){
         setCurrentEvent({ start, end, title: '' });
         setIsModalOpen(true);
         setModalMode('add');
+        }
+        else
+            return;
     };
 
     const handleSelectEvent = (event, e) => {
         const clickPosition = { x: e.clientX, y: e.clientY };
+
+        if(location.pathname !== '/cliente/calendario'){
         setCurrentEvent(event);
         setClickPosition(clickPosition);
         setIsModalOpen(true);
         setModalMode('edit');
+        }
+        else
+            return;
     };
 
     const saveEditedEvent = (editedEvent) => {
