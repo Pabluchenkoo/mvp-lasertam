@@ -1,0 +1,17 @@
+#titulo{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.filtros{
+    padding: 10px 20px 10px 20px;
+
+
+}
+
+.elegida{
+    outline-color: black;
+    border-radius: 10px; /* Ajusta este valor según tus necesidades */
+    border: 2px solid black; /* Añade un marco */
+    font-weight: bold;
+}

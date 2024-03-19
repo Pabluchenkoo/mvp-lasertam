@@ -2,12 +2,12 @@ import {
     BarChartOutlined,
     BookOutlined,
     CalendarOutlined,
-    QuestionOutlined, SettingOutlined,
-    HeatMapOutlined
+    HeatMapOutlined,
+    QuestionOutlined, SettingOutlined
 } from "@ant-design/icons";
-import React, {useState} from "react";
-import {useNavigate, useLocation} from "react-router-dom";
-import {Layout, Menu} from "antd";
+import { Layout, Menu } from "antd";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import './sideMenu.css';
 const { Sider } = Layout;
 
