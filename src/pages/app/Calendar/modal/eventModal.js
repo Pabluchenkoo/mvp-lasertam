@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {formatDateToInputDateTimeLocal, modalStyle} from "./auxiliaryFunc";
 import FetchProfessionals from "./hooks/fetchProfessionals";
-
+import { FormattedMessage, useIntl } from 'react-intl';
 
 
 
 const EventModal = ({ isOpen, onClose, onSave, event }) => {
-
+    const intl = useIntl();
     const [title, setTitle] = useState('');
     const [startDate, setStartDate] = useState(event?.start ? event.start.toISOString().slice(0,16) : '');
     const [endDate, setEndDate] = useState(event?.end ? event.end.toISOString().slice(0,16) : '');
@@ -51,7 +51,7 @@ const EventModal = ({ isOpen, onClose, onSave, event }) => {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}
-                           placeholder="Event Title" required className="form-control"/>
+                           placeholder={intl.formatMessage({ id: 'calendarModal.title' })} required className="form-control"/>
                 </div>
                 <hr/>
                 <div className="form-group">
@@ -65,7 +65,7 @@ const EventModal = ({ isOpen, onClose, onSave, event }) => {
                 </div>
                 <hr/>
                 <div className="form-group">
-                    <label htmlFor="professionalSelect">Profesional Encargado:</label>
+                    <label htmlFor="professionalSelect"><FormattedMessage id="calendarModal.professional"/>:</label>
                     <select
                         id="professionalSelect"
                         value={professional}
@@ -73,7 +73,7 @@ const EventModal = ({ isOpen, onClose, onSave, event }) => {
                         className="form-control"
                         required
                     >
-                        <option value="">Select a Professional</option>
+                        <option value=""><FormattedMessage id="calendarModal.professionals"/></option>
                         {professionalsList.map(professional => (
                             <option key={professional.id} value={professional.name}>{professional.name}</option>
                         ))}
@@ -81,20 +81,20 @@ const EventModal = ({ isOpen, onClose, onSave, event }) => {
                 </div>
                 <hr/>
                 <div className="form-group">
-                    <label htmlFor="commentsTextarea">Comentarios:</label>
+                    <label htmlFor="commentsTextarea"><FormattedMessage id={"calendarModal.comentario"}/>:</label>
                     <textarea
                         id="commentsTextarea"
                         className="form-control"
                         rows="3"
-                        placeholder="Comentarios"
+                        placeholder={intl.formatMessage({ id: 'calendarModal.placeComentario' })}
                         value={comentarios}
                         onChange={(e) => setComentarios(e.target.value)}
                     />
                 </div>
                 <hr/>
                 <div className="justify-content-center flex space-x-4 mt-4">
-                    <button type="submit" className="btn btn-primary">Save</button>
-                    <button type="button" onClick={onClose} className="btn btn-secondary">Cancel</button>
+                    <button type="submit" className="btn btn-primary"><FormattedMessage id={"calendarModal.save"}/></button>
+                    <button type="button" onClick={onClose} className="btn btn-secondary"><FormattedMessage id={"calendarModal.cancel"}/></button>
                 </div>
 
             </form>
