@@ -15,7 +15,7 @@ const Acceso = (props) => {
     else {
         return <>
             <h1>Log in</h1>
-            <Button><Link className={"link"} to={"/administrador"}>Log In</Link></Button>
+            <Button><Link className={"link"} to={"/app"}>Log In</Link></Button>
         </>
     }
 };
