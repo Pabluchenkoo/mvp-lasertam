@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import { FormattedMessage } from "react-intl";
 import Empleados from "../empleados/empleados";
 import Services from "../services/services";
 
@@ -15,7 +16,7 @@ function Administracion() {
             className={`botones_admin ${selectedButton === "servicios" ? "selected" : ""}`}
             onClick={() => setSelectedButton("servicios")}
           >
-            Servicios
+            <FormattedMessage id="admin.servicios"/>
           </button>
         </Col>
         <Col xs={1}>
@@ -25,7 +26,7 @@ function Administracion() {
             }`}
             onClick={() => setSelectedButton("empleados")}
           >
-            Empleados
+            <FormattedMessage id="admin.empleados"/>
           </button>
         </Col>
         <Col xs={10}></Col>

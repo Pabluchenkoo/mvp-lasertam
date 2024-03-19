@@ -35,5 +35,22 @@
     "pqr.not": "PQR Published!",
     "pqr.notificacion": "You have sent a PQR!",
     "pqr.crear": "Create",
-    "pqr.search": "Search comments..."
+    "pqr.search": "Search comments...",
+    "admin.servicios": "Services",
+    "admin.empleados": "Employees",
+    "admin.ae": "Add a new employee",
+    "admin.as": "Add a new service",
+    "admin.tde":"Delete Employee",
+    "admin.tds":"Delete Service",
+    "admin.aceptar":"OK",
+    "admin.cancelar":"Cancel",
+    "admin.se":"Are you sure you'd like to delete this employee?",
+    "admin.ss":"Are you sure you'd like to delete this service?",
+    "admin.tee":"Edit Employee",
+    "admin.tes":"Edit Service",
+    "admin.nombre":"Name:",
+    "admin.apellido":"Last Name:",
+    "admin.email":"Email:",
+    "admin.foto":"Photo's URL:",
+    "negocios.titulo":"Choose your business:"
 }

@@ -1,28 +1,61 @@
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
+import { FormattedMessage } from "react-intl";
 import StarRatings from "react-star-ratings";
+import EventForm from "../Admin/eventForm";
 import "./negocios.css";
 
 function Negocios() {
   const [negocios, setNegocios] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
-  const categorias = {
+  const [showForm, setShowForm] = useState(false);
+  const idiomaNavegador = navigator.language.slice(0, 2);
+  let categorias = {
     Inicio: {
-      imagenUrl: "https://w7.pngwing.com/pngs/170/535/png-transparent-computer-icons-home-house-login-home-angle-rectangle-black.png",
+      imagenUrl:
+        "https://cdn.icon-icons.com/icons2/619/PNG/512/home-black-shape_icon-icons.com_56724.png",
     },
     Belleza: {
-      imagenUrl: "https://w7.pngwing.com/pngs/165/915/png-transparent-black-lips-illustration-lip-kiss-drawing-smile-lips-miscellaneous-leaf-people.png",
+      imagenUrl:
+        "https://static.vecteezy.com/system/resources/previews/017/431/889/non_2x/lips-black-and-white-icon-minimal-modern-beauty-logo-clean-isolated-taste-of-love-vector.jpg",
     },
     Cerrajeria: {
-      imagenUrl: "https://w7.pngwing.com/pngs/131/200/png-transparent-black-key-icon-key-key-angle-text-grey-thumbnail.png",
+      imagenUrl:
+        "https://icones.pro/wp-content/uploads/2022/01/symbole-de-cle-noire.png",
     },
     Plomeria: {
-      imagenUrl: "https://w7.pngwing.com/pngs/205/200/png-transparent-tool-computer-icons-tools-hand-technic-black.png",
+      imagenUrl:
+        "https://icones.pro/wp-content/uploads/2021/03/icone-de-configuration-et-d-outils-noire.png",
     },
     Autos: {
-      imagenUrl: "https://cdn-icons-png.flaticon.com/512/26/26352.png",
+      imagenUrl: "https://cdn-icons-png.flaticon.com/512/16/16301.png",
     },
   };
+  const traducciones = {
+    en: {
+      Inicio: "Home",
+      Belleza: "Beauty",
+      Cerrajeria: "Locksmithing",
+      Plomeria: "Plumbing",
+      Autos: "Cars",
+    },
+    es: {
+      Inicio: "Inicio",
+      Belleza: "Belleza",
+      Cerrajeria: "Cerrajería",
+      Plomeria: "Plomería",
+      Autos: "Autos",
+    },
+  };
+
+  function handleClick() {
+    setShowForm(true);
+    console.log("click");
+  }
+  function handleClose() {
+    setShowForm(false);
+  }
   function handleFilter(categoria) {
     if (categoria === "Inicio") {
       setCategoriaSeleccionada(null);
@@ -40,7 +73,7 @@ function Negocios() {
   }, []);
   function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371;
-    var dLat = deg2rad(lat2 - lat1); 
+    var dLat = deg2rad(lat2 - lat1);
     var dLon = deg2rad(lon2 - lon1);
     var a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -49,7 +82,7 @@ function Negocios() {
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c; 
+    var d = R * c;
     return d.toFixed(2);
   }
 
@@ -76,11 +109,12 @@ function Negocios() {
     });
   }
 
-
   return (
     <Container>
       <Row style={{ margin: "20px", textAlign: "left" }}>
-        <p id="titulo">Escoge un negocio:</p>
+        <p id="titulo">
+          <FormattedMessage id="negocios.titulo" />
+        </p>
       </Row>
       <Row
         style={{
@@ -88,23 +122,27 @@ function Negocios() {
           flexDirection: "row",
           justifyContent: "flex-start",
           marginBottom: "20px",
+          overflowX: "auto",
         }}
       >
         {Object.keys(categorias).map((categoria) => (
           <Col xs={2}>
-            <button key={categoria} 
-            className={`filtros ${categoriaSeleccionada === categoria ? "elegida" : ""}`}
-            onClick={() => handleFilter(categoria)}
+            <button
+              key={categoria}
+              className={`filtros ${
+                categoriaSeleccionada === categoria ? "elegida" : ""
+              }`}
+              onClick={() => handleFilter(categoria)}
             >
               <Row>
                 <Col>
                   <img
                     src={categorias[categoria].imagenUrl}
                     alt="icono"
-                    style={{ width: "30px", height: "20px" }}
+                    style={{ width: "20px", height: "20px" }}
                   />
                 </Col>
-                <Col>{categoria}</Col>
+                <Col>{traducciones[idiomaNavegador][categoria] || categoria}</Col>
               </Row>
             </button>
           </Col>
@@ -122,11 +160,13 @@ function Negocios() {
             <Col xs={12} sm={6} md={4} lg={3} key={negocio.id}>
               <Card
                 className="mb-4"
+                onClick={handleClick}
                 style={{
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                   padding: "20px",
+                  cursor: "pointer",
                 }}
               >
                 <Card.Img
@@ -150,6 +190,12 @@ function Negocios() {
             </Col>
           ))}
       </Row>
+
+      <Modal show={showForm} onHide={handleClose}>
+        <Modal.Body>
+          <EventForm handleClose={handleClose} />
+        </Modal.Body>
+      </Modal>
     </Container>
   );
 }

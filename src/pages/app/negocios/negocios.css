@@ -10,8 +10,7 @@
 }
 
 .elegida{
-    outline-color: black;
-    border-radius: 10px; /* Ajusta este valor según tus necesidades */
-    border: 2px solid black; /* Añade un marco */
+    border-radius: 10px; 
     font-weight: bold;
+    background-color: #F0E9E6;
 }

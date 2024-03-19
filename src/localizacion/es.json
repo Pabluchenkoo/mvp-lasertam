@@ -35,5 +35,22 @@
     "pqr.not": "¡PQR Creada!",
     "pqr.notificacion": "¡Has enviado un nuevo comentario!",
     "pqr.crear": "Crear",
-    "pqr.search": "Buscar comentarios..."
+    "pqr.search": "Buscar comentarios...",
+    "admin.servicios": "Servicios",
+    "admin.empleados": "Empleados",
+    "admin.ae": "Agregar nuevo empleado",
+    "admin.as": "Agregar nuevo servicio",
+    "admin.tde":"Eliminar Empleado",
+    "admin.tds":"Eliminar Servicio",
+    "admin.aceptar":"Aceptar",
+    "admin.cancelar":"Cancelar",
+    "admin.se":"¿Está seguro que desea eliminar a este empleado?",
+    "admin.ss":"¿Está seguro que desea eliminar este servicio?",
+    "admin.tee":"Editar Empleado",
+    "admin.tes":"Editar Servicio",
+    "admin.nombre":"Nombre:",
+    "admin.apellido":"Apellido:",
+    "admin.email":"Email",
+    "admin.foto":"URL de la foto:",
+    "negocios.titulo":"Elige tu Negocio:"
   }
