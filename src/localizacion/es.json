@@ -18,5 +18,22 @@
     "form.location": "Ubicación",
     "form.location2": "Ingrese la ubicación...",
     "form.send": "Enviar",
-    "form.rating2": "Ingrese el puntaje..."
+    "form.rating2": "Ingrese el puntaje...",
+    "pqr.titulo": "PQRs",
+    "pqr.create": "Crear nuevo comentario",
+    "pqr.name": "Nombre",
+    "pqr.name2": "Ingresa su nombre...",
+    "pqr.comment": "Comentario",
+    "pqr.comment2": "Ingresa su comentario..",
+    "paqr.business": "Negocio",
+    "pqr.business2": "Ingresa el negocio...",
+    "pqr.location": "Ubicación",
+    "pqr.location2": "Ingresa la ubicación...",
+    "pqr.rating": "Puntaje",
+    "pqr.rating2": "Ingresa su puntaje...",
+    "pqr.send": "Enviar",
+    "pqr.not": "¡PQR Creada!",
+    "pqr.notificacion": "¡Has enviado un nuevo comentario!",
+    "pqr.crear": "Crear",
+    "pqr.search": "Buscar comentarios..."
   }

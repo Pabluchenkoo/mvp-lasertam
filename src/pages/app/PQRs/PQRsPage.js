@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Form, Toast } from 'react-bootstrap';
 import Comentario from "../../../components/ui/comentario/comentario";
+import { FormattedMessage, useIntl } from 'react-intl';
 
 function PQRsPage() {
+  const intl = useIntl();
   const [comments, setComments] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -71,93 +73,93 @@ function PQRsPage() {
     <Container>
       <Row className="align-items-center">
         <Col xs="6">
-          <h1 style={{ textAlign: 'left' }}>PQRs</h1>
+          <h1 style={{ textAlign: 'left' }}><FormattedMessage id="pqr.titulo"/></h1>
         </Col>
         <Col xs="6" className="text-right">
           <Button
             onClick={() => setShowForm(true)}
             style={{ backgroundColor: '#ffcccc', border: 'none', cursor: 'pointer', fontSize: '0.8rem', color: 'black' }}
           >
-            Crear
+            <FormattedMessage id="pqr.crear"/>
           </Button>
         </Col>
       </Row>
       {showForm && (
         <div className="form-container" style={{ backgroundColor: '#ffcccc', padding: '20px', borderRadius: '10px', marginTop: '20px' }}>
-          <h2 style={{ textAlign: 'left' }}>Crear nuevo comentario</h2>
+          <h2 style={{ textAlign: 'left' }}><FormattedMessage id="pqr.create"/></h2>
           <Form onSubmit={handleFormSubmit}>
             <Form.Group controlId="name">
-              <Form.Label>Nombre:</Form.Label>
+              <Form.Label><FormattedMessage id="pqr.name"/>:</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
-                placeholder="Ingrese su nombre"
+                placeholder={intl.formatMessage({ id: 'pqr.name2' })}
                 value={newComment.name}
                 onChange={handleInputChange}
                 required
               />
             </Form.Group>
             <Form.Group controlId="comment">
-              <Form.Label>Comentario:</Form.Label>
+              <Form.Label><FormattedMessage id="pqr.comment"/>:</Form.Label>
               <Form.Control
                 as="textarea"
                 name="comment"
-                placeholder="Ingrese su comentario"
+                placeholder={intl.formatMessage({ id: 'pqr.comment2' })}
                 value={newComment.comment}
                 onChange={handleInputChange}
                 required
               />
             </Form.Group>
             <Form.Group controlId="place">
-              <Form.Label>Negocio:</Form.Label>
+              <Form.Label><FormattedMessage id="pqr.business"/>:</Form.Label>
               <Form.Control
                 type="text"
                 name="place"
-                placeholder="Ingrese el negocio"
+                placeholder={intl.formatMessage({ id: 'pqr.business2' })}
                 value={newComment.place}
                 onChange={handleInputChange}
                 required
               />
             </Form.Group>
             <Form.Group controlId="location">
-              <Form.Label>Ubicacion:</Form.Label>
+              <Form.Label><FormattedMessage id="pqr.location"/>:</Form.Label>
               <Form.Control
                 type="text"
                 name="location"
-                placeholder="Ingrese la ubicacion"
+                placeholder={intl.formatMessage({ id: 'pqr.location2' })}
                 value={newComment.location}
                 onChange={handleInputChange}
                 required
               />
             </Form.Group>
             <Form.Group controlId="rating">
-              <Form.Label>Rating (0-5):</Form.Label>
+              <Form.Label><FormattedMessage id="pqr.rating"/>(0-5):</Form.Label>
               <Form.Control
                 type="number"
                 name="rating"
                 min="0"
                 max="5"
                 step="0.1"
-                placeholder="Ingrese el rating"
+                placeholder={intl.formatMessage({ id: 'pqr.rating2' })}
                 value={newComment.rating}
                 onChange={handleInputChange}
                 required
               />
             </Form.Group>
-            <Button type="submit">Enviar</Button>
+            <Button type="submit"><FormattedMessage id="pqr.send"/></Button>
           </Form>
         </div>
       )}
       <Toast show={showNotification} onClose={() => setShowNotification(false)} delay={5000} autohide>
         <Toast.Header>
-          <strong className="mr-auto">¡Publicación creada!</strong>
+          <strong className="mr-auto"><FormattedMessage id="pqr.not"/></strong>
         </Toast.Header>
-        <Toast.Body>Tu comentario ha sido creado exitosamente.</Toast.Body>
+        <Toast.Body><FormattedMessage id="pqr.notificacion"/></Toast.Body>
       </Toast>
       <div className="search-container" style={{ margin: '20px 0' }}>
         <Form.Control
           type="text"
-          placeholder="Buscar comentarios..."
+          placeholder={intl.formatMessage({ id: 'pqr.search' })}
           value={searchTerm}
           onChange={handleSearchInputChange}
         />

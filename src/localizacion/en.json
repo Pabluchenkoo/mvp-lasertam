@@ -18,5 +18,22 @@
     "form.business2": "Enter the business name here...",
     "form.location": "Location",
     "form.location2": "Enter the location of the business",
-    "form.send": "Send"
+    "form.send": "Send",
+    "pqr.titulo": "PQRs",
+    "pqr.create": "Create New Comment",
+    "pqr.name": "Name",
+    "pqr.name2": "Enter your name here...",
+    "pqr.comment": "Comment",
+    "pqr.comment2": "Enter your comment here...",
+    "paqr.business": "Business",
+    "pqr.business2": "Enter the business name here...",
+    "pqr.location": "Location",
+    "pqr.location2": "Enter the location of the business",
+    "pqr.rating": "Rating",
+    "pqr.rating2": "Enter your rating here...",
+    "pqr.send": "Send",
+    "pqr.not": "PQR Published!",
+    "pqr.notificacion": "You have sent a PQR!",
+    "pqr.crear": "Create",
+    "pqr.search": "Search comments..."
 }

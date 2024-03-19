@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, ProgressBar, Button, Form, Toast } from 'react-bootstrap';
 import Comentario from "../../../components/ui/comentario/comentario";
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 function MiNegocioPage() {
+  const intl = useIntl();
   const [negocioInfo, setNegocioInfo] = useState({});
   const [comments, setComments] = useState({});
   const [averageRating, setAverageRating] = useState(0);
@@ -124,12 +125,12 @@ function MiNegocioPage() {
                 {showReplyForm[comments[key].id] && (
                   <Form onSubmit={(event) => handleReplySubmit(event, comments[key].id)}>
                     <Form.Group controlId={`replyText-${comments[key].id}`}>
-                      <Form.Control type="text" placeholder={'MiNegocio.enterReply'} name="replyText" />
+                      <Form.Control type="text" placeholder={intl.formatMessage({ id: 'MiNegocio.enterReply' })} name="replyText" />
                     </Form.Group>
                     <Button variant="light" type="submit"><FormattedMessage id="MiNegocio.send"/> </Button>
                   </Form>
                 )}
-                {comments[key].reply && <p><strong></strong><FormattedMessage id="MiNegocio.yourReply"/> : {comments[key].reply}</p>}
+                {comments[key].reply && <p><strong><FormattedMessage id="MiNegocio.yourReply"/></strong> {comments[key].reply}</p>}
               </div>
             ))}
           </div>
