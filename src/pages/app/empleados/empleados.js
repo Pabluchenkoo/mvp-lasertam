@@ -7,7 +7,7 @@ import Image from "react-bootstrap/Image";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import { FormattedMessage } from "react-intl";
-import "./empleados.css";
+// import "./empleados.css";
 
 
 function Empleados() {

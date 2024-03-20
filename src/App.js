@@ -1,3 +1,4 @@
+
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -8,25 +9,26 @@ import { useLocation } from 'react-router-dom';
 function App() {
     const location = useLocation();
 
-    const hideBarra = location.pathname.startsWith('/app');
+    const hideBarraAdmin = location.pathname.startsWith('/administrador');
+    const hideBarraCliente = location.pathname.startsWith('/cliente');
 
-  return (
-      <>
-          <div className="App">
-              {!hideBarra && (
-                  <>
-                      <br/>
-                      <Barra/>
-                      <hr/>
-                  </>
-              )
-              }
-          </div>
-          <div className="content">
-              <Rutas/>
-          </div>
-      </>
-  );
+    return (
+        <>
+            <div className="App">
+                {!hideBarraAdmin && !hideBarraCliente && (
+                    <>
+                        <br/>
+                        <Barra/>
+                        <hr/>
+                    </>
+                )
+                }
+            </div>
+            <div className="content">
+                <Rutas/>
+            </div>
+        </>
+    );
 }
 
 export default App;
