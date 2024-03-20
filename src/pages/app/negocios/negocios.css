@@ -1,0 +1,16 @@
+#titulo{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.filtros{
+    padding: 10px 20px 10px 20px;
+
+
+}
+
+.elegida{
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: #F0E9E6;
+}

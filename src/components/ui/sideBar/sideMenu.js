@@ -2,15 +2,17 @@ import {
     BarChartOutlined,
     BookOutlined,
     CalendarOutlined,
-    MailOutlined,
-    MessageOutlined,
-    PieChartOutlined, QuestionOutlined, SettingOutlined
+    QuestionOutlined, SettingOutlined,
+    HeatMapOutlined
 } from "@ant-design/icons";
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import {Layout, Menu} from "antd";
 import './sideMenu.css';
+import { FormattedMessage } from "react-intl";
+
 const { Sider } = Layout;
+
 
 function getItem(
     label,
@@ -26,43 +28,43 @@ function getItem(
     }
 }
 
-const titulos = [
-    getItem('Dashboard', 'dashboard', <PieChartOutlined />),
-    getItem('Mi negocio', 'miNegocio', <BookOutlined />),
-    getItem('Administración', 'administracion', <BarChartOutlined />),
-    getItem('Calendario', 'calendario', <CalendarOutlined />),
-    getItem('Mail', 'mail', <MailOutlined />),
-    getItem('Conversaciones', 'conversaciones', <MessageOutlined />),
-    getItem('configuración', 'configuracion', <SettingOutlined />),
-    getItem('PQRs', 'pqrs', <QuestionOutlined />),
-];
+function getMenuItem(path) {
+
+    const titulos = [
+
+        getItem(<FormattedMessage id="side.minegocio" />, 'miNegocio', <BookOutlined />,[
+            getItem(<FormattedMessage id="side.comentarios" />, 'comentarios'),
+            getItem(<FormattedMessage id="side.facturacion" />, 'facturacion'),
+            getItem(<FormattedMessage id="side.empleados" />, 'empleados')],),
+        getItem(<FormattedMessage id="side.administracion" />, 'administracion', <BarChartOutlined />),
+        getItem(<FormattedMessage id="side.calendario" />, 'calendario', <CalendarOutlined />),
+        getItem(<FormattedMessage id="side.pqr" />, 'pqrs', <QuestionOutlined />),
+    ];
+
+    if (path.startsWith('/cliente')) {
+        titulos.push(getItem(<FormattedMessage id="side.explorar" />, 'negocios', <HeatMapOutlined />))
+        return titulos.filter((item) => (item.key !== 'administracion') && (item.key !== 'configuracion') && (item.key !== 'miNegocio') )
+    }
+
+    return titulos
+}
+
 
 function SideMenu(){
     const [collapsed, setCollapsed] = useState(false);
     const navigate = useNavigate();
+
+
     return(<Sider style={{backgroundColor:'#DFDBD8'}} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div style={{backgroundColor:'#DFDBD8', display:"flex"}} />
         <br/>
-        {!collapsed && <h3>Sketch Your Business</h3>}
+        {!collapsed && <h3>Book Your Business</h3>}
         <Menu onClick={({key}) =>{if(key !== "9") navigate(key)}}
               style={{backgroundColor:'#DFDBD8', color:'#282c34', fontWeight:'bold'}}
               defaultSelectedKeys={[window.location.pathname]}
               mode="inline"
-              items={titulos}
-              //hover a certain color
-              onHover={({key}) => {
-                    if(key !== "9") {
-                        document.getElementById(key).style.backgroundColor = '#DFDBD8';
-                        document.getElementById(key).style.color = '#DFDBD8';
-                    }
-              }}
-              // onSelect={({key}) => {
-              //       if(key !== "9") {
-              //           document.getElementById(key).style.backgroundColor = '#DFDBD8';
-              //           document.getElementById(key).style.color = '#DFDBD8';
-              //       }}
-              // }
-                />
+              items={getMenuItem(useLocation().pathname)}
+        />
 
     </Sider>)
 }
