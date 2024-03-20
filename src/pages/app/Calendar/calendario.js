@@ -28,9 +28,9 @@ const Calendario = () => {
 
     const handleSelectSlot = ({ start, end }) => {
         if(location.pathname !== '/cliente/calendario'){
-        setCurrentEvent({ start, end, title: '' });
-        setIsModalOpen(true);
-        setModalMode('add');
+            setCurrentEvent({ start, end, title: '' });
+            setIsModalOpen(true);
+            setModalMode('add');
         }
         else
             return;
@@ -40,10 +40,10 @@ const Calendario = () => {
         const clickPosition = { x: e.clientX, y: e.clientY };
 
         if(location.pathname !== '/cliente/calendario'){
-        setCurrentEvent(event);
-        setClickPosition(clickPosition);
-        setIsModalOpen(true);
-        setModalMode('edit');
+            setCurrentEvent(event);
+            setClickPosition(clickPosition);
+            setIsModalOpen(true);
+            setModalMode('edit');
         }
         else
             return;

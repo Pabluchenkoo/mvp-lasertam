@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Layout} from 'antd';
-import Contenido from "./Routing/AppRouting";
+import Contenido from "./Routing/adminAppRouting";
 import SideMenu from "../../components/ui/sideBar/sideMenu";
 import NavBarApp from "../../components/ui/navBarApp/navBarApp";
 const { Content,Header } = Layout;

@@ -8,13 +8,12 @@ import { useLocation } from 'react-router-dom';
 function App() {
     const location = useLocation();
 
-    const hideBarraAdmin = location.pathname.startsWith('/administrador');
-    const hideBarraCliente = location.pathname.startsWith('/cliente');
+    const hideBarra = location.pathname.startsWith('/app');
 
   return (
       <>
           <div className="App">
-              {!hideBarraAdmin && !hideBarraCliente && (
+              {!hideBarra && (
                   <>
                       <br/>
                       <Barra/>

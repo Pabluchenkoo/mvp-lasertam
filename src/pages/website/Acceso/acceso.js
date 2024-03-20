@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import "./acceso.css";
-import { Button, Card } from "react-bootstrap"; 
+import { Button, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import RegistroForm from "./RegistroForm";
@@ -20,7 +20,7 @@ const Acceso = (props) => {
     const guardarUsuario = async (data) => {
         try {
             let usuarios = JSON.parse(localStorage.getItem('Usuarios')) || [];
-            
+
             const nuevoUsuario = { ...data };
             if (selectedRole === "usuario") {
                 nuevoUsuario.company = null;
@@ -98,15 +98,15 @@ const Acceso = (props) => {
                 </>
             )}
             {props.type !== "signup" && (
-                <Form onSubmit={handleSubmit(handleFormSubmit)} className="mb-3"> 
+                <Form onSubmit={handleSubmit(handleFormSubmit)} className="mb-3">
                     <FloatingLabel controlId="floatingInput" label={<FormattedMessage id="registro.label_correo" />}>
                         <Form.Control type="email" placeholder={<FormattedMessage id="registro.label_correo" />} {...register('email', { required: true })} />
                         {errors.email && <p><FormattedMessage id="registro.mensaje_error" /></p>}
                     </FloatingLabel>
                     <FloatingLabel controlId="floatingPassword" label={<FormattedMessage id="registro.label_contrasena" />} className="mt-3">
-                        <Form.Control 
+                        <Form.Control
                             type={showPassword ? "text" : "password"}
-                            placeholder={<FormattedMessage id="registro.label_contrasena" />} 
+                            placeholder={<FormattedMessage id="registro.label_contrasena" />}
                             {...register('password', { required: true })}
                         />
                         {errors.password && <p><FormattedMessage id="registro.mensaje_error" /></p>}

@@ -64,7 +64,7 @@ function SideMenu(){
               defaultSelectedKeys={[window.location.pathname]}
               mode="inline"
               items={getMenuItem(useLocation().pathname)}
-                />
+        />
 
     </Sider>)
 }
