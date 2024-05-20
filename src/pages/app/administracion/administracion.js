@@ -35,14 +35,14 @@ function Administracion() {
                 <Col md={8}>
                     {selectedButton === "servicios" ? <Services /> : <Empleados />}
                 </Col>
-                <Col md={4}>
-                    <img
-                        src="https://img.freepik.com/vector-premium/peluqueria-logo-diseno-corona-salon_290562-205.jpg"
-                        alt="Your description"
-                        style={{ width: "100%", height: "auto" }}
-                    />
-                    <h1>Hair Saloon</h1>
-                </Col>
+                {/*<Col md={4}>*/}
+                {/*    <img*/}
+                {/*        src="https://img.freepik.com/vector-premium/peluqueria-logo-diseno-corona-salon_290562-205.jpg"*/}
+                {/*        alt="Your description"*/}
+                {/*        style={{ width: "100%", height: "auto" }}*/}
+                {/*    />*/}
+                {/*    <h1>Hair Saloon</h1>*/}
+                {/*</Col>*/}
             </Row>
         </Container>
     );

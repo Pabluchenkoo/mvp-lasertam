@@ -22,12 +22,12 @@ const Facturacion = () => {
     const [showModal, setShowModal] = useState(false);
     const [selectedInvoice, setSelectedInvoice] = useState(null);
 
-    useEffect(() => {
-        fetch('https://raw.githubusercontent.com/JuanSe2003/facturas/main/facturas5.json')
-            .then(response => response.json())
-            .then(data => setApiData(data))
-            .catch(error => console.error('Error fetching API:', error));
-    }, []);
+    // useEffect(() => {
+    //     fetch('https://raw.githubusercontent.com/JuanSe2003/facturas/main/facturas5.json')
+    //         .then(response => response.json())
+    //         .then(data => setApiData(data))
+    //         .catch(error => console.error('Error fetching API:', error));
+    // }, []);
 
     const getDepartmentosColombia = () => {
         return [

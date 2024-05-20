@@ -8,6 +8,7 @@ import { BrowserRouter} from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import messages_es from './localizacion/es.json';
 import messages_en from './localizacion/en.json';
+import {EventsProvider} from "./pages/app/Calendar/context/eventsContext";
 
 
 // Here is where you insert the react-axe configuration
@@ -26,11 +27,13 @@ const messages = {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+      <EventsProvider>
     <IntlProvider locale={language} messages={messages[language]}>
       <BrowserRouter>
       <App />
         </BrowserRouter>
     </IntlProvider>
+      </EventsProvider>
   </React.StrictMode>
 );
 

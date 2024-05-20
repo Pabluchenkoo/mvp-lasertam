@@ -33,16 +33,12 @@ function getMenuItem(path) {
     const titulos = [
 
         getItem(<FormattedMessage id="side.minegocio" />, 'miNegocio', <BookOutlined />,[
-            getItem(<FormattedMessage id="side.comentarios" />, 'comentarios'),
-            getItem(<FormattedMessage id="side.facturacion" />, 'facturacion'),
             getItem(<FormattedMessage id="side.empleados" />, 'empleados')],),
-        getItem(<FormattedMessage id="side.administracion" />, 'administracion', <BarChartOutlined />),
         getItem(<FormattedMessage id="side.calendario" />, 'calendario', <CalendarOutlined />),
-        getItem(<FormattedMessage id="side.pqr" />, 'pqrs', <QuestionOutlined />),
     ];
 
     if (path.startsWith('/cliente')) {
-        titulos.push(getItem(<FormattedMessage id="side.explorar" />, 'negocios', <HeatMapOutlined />))
+        // titulos.push(getItem(<FormattedMessage id="side.explorar" />, 'negocios', <HeatMapOutlined />))
         return titulos.filter((item) => (item.key !== 'administracion') && (item.key !== 'configuracion') && (item.key !== 'miNegocio') )
     }
 
@@ -58,7 +54,7 @@ function SideMenu(){
     return(<Sider style={{backgroundColor:'#DFDBD8'}} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div style={{backgroundColor:'#DFDBD8', display:"flex"}} />
         <br/>
-        {!collapsed && <h3>Book Your Business</h3>}
+        {!collapsed && <h3>LASERTAM RESERVAS</h3>}
         <Menu onClick={({key}) =>{if(key !== "9") navigate(key)}}
               style={{backgroundColor:'#DFDBD8', color:'#282c34', fontWeight:'bold'}}
               defaultSelectedKeys={[window.location.pathname]}

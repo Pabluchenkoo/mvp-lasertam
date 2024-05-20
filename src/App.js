@@ -11,14 +11,14 @@ function App() {
 
     const hideBarraAdmin = location.pathname.startsWith('/administrador');
     const hideBarraCliente = location.pathname.startsWith('/cliente');
-
+    const hideBarraDetail = location.pathname.startsWith('/cita');
     return (
         <>
             <div className="App">
-                {!hideBarraAdmin && !hideBarraCliente && (
+                {!hideBarraAdmin && !hideBarraCliente && !hideBarraDetail && (
                     <>
                         <br/>
-                        <Barra/>
+                        {/*<Barra/>*/}LASERTAM MVP
                         <hr/>
                     </>
                 )

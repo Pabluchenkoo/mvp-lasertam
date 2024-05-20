@@ -12,12 +12,6 @@ function Rutas(){
     return(<div>
         <Routes>
             <Route path="/" element={<Home/>} />
-            <Route path={"/services"} element={<Services/>}/>
-            <Route path={"/pricing"} element={<Pricing/>}/>
-            <Route path={"/whyUs"} element={<WhyUs/>}/>
-            <Route path={"/workWithUs"} element={<WorkWithUs/>}/>
-            <Route path={"/signUp"} element={<Acceso type={"signup"}/>}/>
-            <Route path={"/logIn"} element={<Acceso type={"login"}/>}/>
             <Route path={"/administrador/*"} element={<AdminApp/>}/>
             <Route path={"/cliente/*"} element={<AdminApp/>}/>
         </Routes>

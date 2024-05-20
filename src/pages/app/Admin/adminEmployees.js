@@ -108,24 +108,7 @@ function AdminEmployees() {
           ></Table>
         </Space>
       </div>
-      <h2><FormattedMessage id={"adminEmployees.bestEmployee"}/></h2>
-      <div className="card-container">
-        {primerosTres.map(item => (
-          <div className="card">
-            <Card style={{ width: '18rem'}}>
-              <Card.Img className="image" variant="top" src={item.image} />
-              <Card.Body>
-                <Card.Title>{item.first_name} {item.last_name}</Card.Title>
-                <Card.Text>
-                  <FormattedMessage id={"adminEmployees.description1"}/>: {item.earnings} <FormattedMessage id={"adminEmployees.description2"}/> ${total}.
-                  <FormattedMessage id={"adminEmployees.description3"}/> %{(parseFloat(item.earnings.replace("$", ""))/total*100).toFixed(2)} 
-                  <FormattedMessage id={"adminEmployees.description4"}/>.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-        ))}
-      </div>
+
     </div>
 
   );
